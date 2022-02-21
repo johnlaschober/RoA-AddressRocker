@@ -14,7 +14,6 @@ namespace RoA.Logic
         private Process _gameProcess = null;
         private ProcessModule _gameModule = null;
         public GameVersion _gameVersion = null;
-        private IntPtr _basePointer;
 
         public MemoryReader(Process gameProcess, GameVersion version)
         {
@@ -25,7 +24,6 @@ namespace RoA.Logic
                 if (pm.ModuleName == String.Format("{0}.exe", Constants.ExecutableName))
                 {
                     _gameModule = pm;
-                    _basePointer = pm.BaseAddress + _gameVersion.BaseOffset;
                 }
             }
         }
@@ -57,21 +55,28 @@ namespace RoA.Logic
 
         private double ReadGameMakerDouble(PointerItem pointerItem)
         {
-            using (var sharp = new MemorySharp(_gameProcess.Id))
+            try
             {
-                List<Int32> offsets = pointerItem.PointerAddresses;
-
-                IntPtr _readMe = _basePointer;
-
-                for (int i = offsets.Count - 1; i >= 0; i--)
+                using (var sharp = new MemorySharp(_gameProcess.Id))
                 {
-                    IntPtr tmp = sharp.Read<IntPtr>(_readMe, false);
-                    IntPtr tmp_Ptr = tmp + offsets[i];
-                    _readMe = tmp_Ptr;
-                }
+                    List<Int32> offsets = pointerItem.PointerAddresses;
 
-                double d = sharp.Read<double>(_readMe, false);
-                return d;
+                    IntPtr _readMe = _gameModule.BaseAddress + pointerItem.BaseOffset;
+
+                    for (int i = offsets.Count - 1; i >= 0; i--)
+                    {
+                        IntPtr tmp = sharp.Read<IntPtr>(_readMe, false);
+                        IntPtr tmp_Ptr = tmp + offsets[i];
+                        _readMe = tmp_Ptr;
+                    }
+
+                    double d = sharp.Read<double>(_readMe, false);
+                    return d;
+                }
+            }
+            catch (Exception)
+            {
+                return -1;
             }
         }
     }

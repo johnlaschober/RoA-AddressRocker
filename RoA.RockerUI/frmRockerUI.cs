@@ -112,12 +112,9 @@ namespace RoA.RockerUI
                                 WriteStateToFile(syncer.gameState);
                             }
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            if (ex.Message.Contains("Couldn't read"))
-                            {
-                                gameProcess = null;
-                            }
+
                         }
                     }
                     if (gameProcess == null)

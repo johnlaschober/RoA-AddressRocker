@@ -10,13 +10,13 @@ namespace RoA.Memory
     {
         public string Version { get; set; }
         public string ExecutableMD5 { get; set; }
-        public Int32 BaseOffset { get; set; }
         public List<PointerItem> PointerItems { get; set; }
     }
 
     public class PointerItem
     {
         public ePointerItem PointerType { get; set; }
+        public Int32 BaseOffset { get; set; }
         public List<Int32> PointerAddresses { get; set; }
     }
 }

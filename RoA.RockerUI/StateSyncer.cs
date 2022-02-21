@@ -61,6 +61,9 @@ namespace RoA.RockerUI
 
             switch (dCharacterIndex)
             {
+                case -1:
+                    character.Character = "ADDRESS_ERROR";
+                    break;
                 case 0:
                     character.Character = "NONE";
                     break;
