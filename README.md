@@ -34,18 +34,19 @@ namespace RoA.Memory
                 GameVersion v2_1_1_0 = new GameVersion()
                 {
                     Version = "2.1.1.0",
-                    BaseOffset = 0x00000000,
                     ExecutableMD5 = "XXXXXXXXXXXXXXXXXXXX",
                     PointerItems = new List<PointerItem>()
                     {
                         new PointerItem()
                         {
                             PointerType = ePointerItem.P1_CHARACTER_INDEX,
+                            BaseOffset = 0x00000000,
                             PointerAddresses = new List<Int32>() { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
                         },
                         new PointerItem()
                         {
                             PointerType = ePointerItem.P2_CHARACTER_INDEX,
+                            BaseOffset = 0x00000000,
                             PointerAddresses = new List<Int32>() { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
                         }
                 };
