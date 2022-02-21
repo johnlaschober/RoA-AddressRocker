@@ -354,7 +354,8 @@ namespace RoA.RockerUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(414, 245);
+            this.MaximumSize = new System.Drawing.Size(414, 288);
+            this.MinimumSize = new System.Drawing.Size(414, 288);
             this.Name = "frmRockerUI";
             this.Text = "Address Rocker";
             this.Load += new System.EventHandler(this.frmRockerUI_Load);
