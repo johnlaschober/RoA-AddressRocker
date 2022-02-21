@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/RoA.Logic/Fasm.NET.xml
+/RoA.Memory/PointerDirectory.cs
