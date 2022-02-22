@@ -134,8 +134,11 @@ namespace RoA.RockerUI
         {
             try
             {
-                string json = JsonConvert.SerializeObject(state);
-                File.WriteAllText(configFile.StateSavePath, json);
+                if (!String.IsNullOrEmpty(configFile.StateSavePath))
+                {
+                    string json = JsonConvert.SerializeObject(state);
+                    File.WriteAllText(configFile.StateSavePath, json);
+                }
             }
             catch (Exception)
             {
