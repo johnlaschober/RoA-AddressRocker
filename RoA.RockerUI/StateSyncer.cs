@@ -22,8 +22,8 @@ namespace RoA.RockerUI
         public bool Sync()
         {
             GameState newState = new GameState();
-            newState.P1Character = SyncCharacter(1);
-            newState.P2Character = SyncCharacter(2);
+            newState.P1Character = SyncCharacter(1, gameState.P1Character);
+            newState.P2Character = SyncCharacter(2, gameState.P2Character);
             newState.TourneySet = SyncTourneySet();
 
             if (IsStateDifferent(newState))
@@ -37,14 +37,26 @@ namespace RoA.RockerUI
             }
         }
 
-        private RivalsCharacterSelection SyncCharacter(int iPlayerNum)
+        private RivalsCharacterSelection SyncCharacter(int iPlayerNum, RivalsCharacterSelection cs)
         {
             if (iPlayerNum != 1 && iPlayerNum != 2) return null;
             RivalsCharacterSelection character = new RivalsCharacterSelection();
             character.Skin = new RivalsSkin();
+            if (cs != null && cs.Character != null)
+            {
+                character.Character = cs.Character;
+            }
+            if (cs != null && cs.Skin != null)
+            {
+                character.Skin = new RivalsSkin()
+                {
+                    SkinDescription = cs.Skin.SkinDescription,
+                    SkinIndex = cs.Skin.SkinIndex
+                };
+            }
 
-            double dCharacterIndex = 1;
-            double dSkinIndex = 0;
+            double dCharacterIndex = 0;
+            double dSkinIndex = character.Skin.SkinIndex;
 
             switch (iPlayerNum)
             {
@@ -62,10 +74,9 @@ namespace RoA.RockerUI
             switch (dCharacterIndex)
             {
                 case -1:
-                    character.Character = "ADDRESS_ERROR";
+                    character.Character = "UNKNOWN";
                     break;
                 case 0:
-                    character.Character = "NONE";
                     break;
                 case 1:
                     character.Character = "RANDOM";
