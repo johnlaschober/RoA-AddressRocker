@@ -12,7 +12,7 @@ Pointer addresses will need to be updated each time a new game version is releas
 - P1_GAME_COUNT
 - P2_GAME_COUNT
 - IN_MATCH
-- TOURNEY_MODE_FIRST_TO
+- TOURNEY_MODE_BEST_OF
 
 ### Building
 You will need to add back in the git ignored `PointerDirectory.cs` file located in the `RoA.Memory` project. `PointerDirectory` will hold the pointer addresses for the tracked game memory values, such as P1_CHARACTER_INDEX, P1_GAME_COUNT, etc
