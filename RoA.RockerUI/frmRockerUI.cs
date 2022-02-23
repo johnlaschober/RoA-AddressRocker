@@ -102,7 +102,7 @@ namespace RoA.RockerUI
 
                     bgwSync.ReportProgress(0, "CONNECTED " + reader._gameVersion.Version);
 
-                    while (gameProcess != null)
+                    while (gameProcess != null && !gameProcess.HasExited)
                     {
                         try
                         {
@@ -157,11 +157,11 @@ namespace RoA.RockerUI
             {
                 GameState state = (GameState)e.UserState;
                 lblCharacter1.Text = state.P1Character.Character;
-                lblSkin1.Text = state.P1Character.Skin.SkinIndex.ToString();
+                lblSkinDesc1.Text = state.P1Character.Skin.SkinDescription;
                 lblCharacter2.Text = state.P2Character.Character;
-                lblSkin2.Text = state.P2Character.Skin.SkinIndex.ToString();
+                lblSkinDesc2.Text = state.P2Character.Skin.SkinDescription;
                 lblInMatch.Text = state.TourneySet.InMatch.ToString();
-                lblFirstTo.Text = state.TourneySet.TourneyModeFirstTo.ToString();
+                lblFirstTo.Text = state.TourneySet.TourneyModeBestOf.ToString();
                 lblGames1.Text = state.TourneySet.P1GameCount.ToString();
                 lblGames2.Text = state.TourneySet.P2GameCount.ToString();
             }
@@ -170,9 +170,9 @@ namespace RoA.RockerUI
         private void Disconnected()
         {
             lblCharacter1.Text = "???";
-            lblSkin1.Text =      "???";
+            lblSkinDesc1.Text =  "???";
             lblCharacter2.Text = "???";
-            lblSkin2.Text =      "???";
+            lblSkinDesc2.Text =  "???";
             lblInMatch.Text =    "???";
             lblFirstTo.Text =    "???";
             lblGames1.Text =     "???";

@@ -10,11 +10,21 @@ namespace RoA.Memory
     {
         public string Character { get; set; }
         public RivalsSkin Skin { get; set; }
+
+        public RivalsCharacterSelection()
+        {
+            Character = "";
+            Skin = new RivalsSkin();
+        }
     }
 
     public class RivalsSkin
     {
-        public int SkinIndex { get; set; }
         public string SkinDescription { get; set; }
+
+        public RivalsSkin()
+        {
+            SkinDescription = "";
+        }
     }
 }

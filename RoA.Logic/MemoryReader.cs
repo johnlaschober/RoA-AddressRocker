@@ -46,8 +46,8 @@ namespace RoA.Logic
                     return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.P2_GAME_COUNT).ToList().First());
                 case ePointerItem.IN_MATCH:
                     return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.IN_MATCH).ToList().First());
-                case ePointerItem.TOURNEY_MODE_FIRST_TO:
-                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.TOURNEY_MODE_FIRST_TO).ToList().First());
+                case ePointerItem.TOURNEY_MODE_BEST_OF:
+                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.TOURNEY_MODE_BEST_OF).ToList().First());
                 default:
                     return null;
             }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="ePointerItem.cs" />
+    <Compile Include="eSkins.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="GameVersion.cs" />
     <Compile Include="PointerDirectory.cs" />

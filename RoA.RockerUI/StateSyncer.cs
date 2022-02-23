@@ -51,12 +51,11 @@ namespace RoA.RockerUI
                 character.Skin = new RivalsSkin()
                 {
                     SkinDescription = cs.Skin.SkinDescription,
-                    SkinIndex = cs.Skin.SkinIndex
                 };
             }
 
             double dCharacterIndex = 0;
-            double dSkinIndex = character.Skin.SkinIndex;
+            double dSkinIndex = 0;
 
             switch (iPlayerNum)
             {
@@ -69,71 +68,90 @@ namespace RoA.RockerUI
                     dSkinIndex = (double)_memoryReader.ReadItem(ePointerItem.P2_SKIN_INDEX);
                     break;
             }
-            character.Skin.SkinIndex = (int)dSkinIndex;
 
             switch (dCharacterIndex)
             {
                 case -1:
                     character.Character = "UNKNOWN";
+                    character.Skin.SkinDescription = "";
                     break;
                 case 0:
                     break;
                 case 1:
                     character.Character = "RANDOM";
+                    character.Skin.SkinDescription = "";
                     break;
                 case 2:
                     character.Character = "ZETTERBURN";
+                    character.Skin.SkinDescription = ((eZetterburnSkins)(dSkinIndex)).ToString();
                     break;
                 case 3:
                     character.Character = "ORCANE";
+                    character.Skin.SkinDescription = ((eOrcaneSkins)(dSkinIndex)).ToString();
                     break;
                 case 4:
                     character.Character = "WRASTOR";
+                    character.Skin.SkinDescription = ((eWrastorSkins)(dSkinIndex)).ToString();
                     break;
                 case 5:
                     character.Character = "KRAGG";
+                    character.Skin.SkinDescription = ((eKraggSkins)(dSkinIndex)).ToString();
                     break;
                 case 6:
                     character.Character = "FORSBURN";
+                    character.Skin.SkinDescription = ((eForsburnSkins)(dSkinIndex)).ToString();
                     break;
                 case 7:
                     character.Character = "MAYPUL";
+                    character.Skin.SkinDescription = ((eMaypulSkins)(dSkinIndex)).ToString();
                     break;
                 case 9:
                     character.Character = "ETALUS";
+                    character.Skin.SkinDescription = ((eEtalusSkins)(dSkinIndex)).ToString();
                     break;
                 case 10:
                     character.Character = "ORI";
+                    character.Skin.SkinDescription = ((eOriSkins)(dSkinIndex)).ToString();
                     break;
                 case 11:
                     character.Character = "RANNO";
+                    character.Skin.SkinDescription = ((eRannoSkins)(dSkinIndex)).ToString();
                     break;
                 case 12:
                     character.Character = "CLAIREN";
+                    character.Skin.SkinDescription = ((eClairenSkins)(dSkinIndex)).ToString();
                     break;
                 case 13:
                     character.Character = "SYLVANOS";
+                    character.Skin.SkinDescription = ((eSylvanosSkins)(dSkinIndex)).ToString();
                     break;
                 case 14:
                     character.Character = "ELLIANA";
+                    character.Skin.SkinDescription = ((eEllianaSkins)(dSkinIndex)).ToString();
                     break;
                 case 15:
                     character.Character = "SHOVEL_KNIGHT";
+                    character.Skin.SkinDescription = ((eShovelKnightSkins)(dSkinIndex)).ToString();
                     break;
                 case 16:
                     character.Character = "MOLLO";
+                    character.Skin.SkinDescription = ((eMolloSkins)(dSkinIndex)).ToString();
                     break;
                 case 17:
                     character.Character = "HODAN";
+                    character.Skin.SkinDescription = ((eHodanSkins)(dSkinIndex)).ToString();
                     break;
                 case 18:
                     character.Character = "POMME";
+                    character.Skin.SkinDescription = ((ePommeSkins)(dSkinIndex)).ToString();
                     break;
                 case 19:
                     character.Character = "OLYMPIA";
+                    character.Skin.SkinDescription = ((eOlympiaSkins)(dSkinIndex)).ToString();
                     break;
                 default:
                     character.Character = "ABSA";
+                    character.Skin.SkinDescription = ((eAbsaSkins)(dSkinIndex)).ToString();
                     break;
             }
 
@@ -147,26 +165,26 @@ namespace RoA.RockerUI
             returnSet.P1GameCount = (int)((double)_memoryReader.ReadItem(ePointerItem.P1_GAME_COUNT));
             returnSet.P2GameCount = (int)((double)_memoryReader.ReadItem(ePointerItem.P2_GAME_COUNT));
 
-            double dTourneyCount = (double)_memoryReader.ReadItem(ePointerItem.TOURNEY_MODE_FIRST_TO);
+            double dTourneyCount = (double)_memoryReader.ReadItem(ePointerItem.TOURNEY_MODE_BEST_OF);
             switch (dTourneyCount)
             {
                 case 1:
-                    returnSet.TourneyModeFirstTo = 1;
+                    returnSet.TourneyModeBestOf = 1;
                     break;
                 case 2:
-                    returnSet.TourneyModeFirstTo = 3;
+                    returnSet.TourneyModeBestOf = 3;
                     break;
                 case 3:
-                    returnSet.TourneyModeFirstTo = 5;
+                    returnSet.TourneyModeBestOf = 5;
                     break;
                 case 4:
-                    returnSet.TourneyModeFirstTo = 7;
+                    returnSet.TourneyModeBestOf = 7;
                     break;
                 case 5:
-                    returnSet.TourneyModeFirstTo = 9;
+                    returnSet.TourneyModeBestOf = 9;
                     break;
                 default:
-                    returnSet.TourneyModeFirstTo = -1;
+                    returnSet.TourneyModeBestOf = -1;
                     break;
             }
 
@@ -176,13 +194,13 @@ namespace RoA.RockerUI
         private bool IsStateDifferent(GameState newState)
         {
             if (gameState.P1Character.Character != newState.P1Character.Character ||
-                gameState.P1Character.Skin.SkinIndex != newState.P1Character.Skin.SkinIndex ||
+                gameState.P1Character.Skin.SkinDescription != newState.P1Character.Skin.SkinDescription ||
                 gameState.P2Character.Character != newState.P2Character.Character ||
-                gameState.P2Character.Skin.SkinIndex != newState.P2Character.Skin.SkinIndex ||
+                gameState.P2Character.Skin.SkinDescription != newState.P2Character.Skin.SkinDescription ||
                 gameState.TourneySet.InMatch != newState.TourneySet.InMatch ||
                 gameState.TourneySet.P1GameCount != newState.TourneySet.P1GameCount ||
                 gameState.TourneySet.P2GameCount != newState.TourneySet.P2GameCount ||
-                gameState.TourneySet.TourneyModeFirstTo != newState.TourneySet.TourneyModeFirstTo)
+                gameState.TourneySet.TourneyModeBestOf != newState.TourneySet.TourneyModeBestOf)
             {
                 return true;
             }

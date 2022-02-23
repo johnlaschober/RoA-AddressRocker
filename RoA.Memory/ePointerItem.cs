@@ -15,6 +15,6 @@ namespace RoA.Memory
         P1_GAME_COUNT,
         P2_GAME_COUNT,
         IN_MATCH,
-        TOURNEY_MODE_FIRST_TO
+        TOURNEY_MODE_BEST_OF
     };
 }
