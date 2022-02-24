@@ -74,84 +74,104 @@ namespace RoA.RockerUI
                 case -1:
                     character.Character = "UNKNOWN";
                     character.Skin.SkinDescription = "";
+                    character.Skin.SkinIndex = 0;
                     break;
                 case 0:
                     break;
                 case 1:
                     character.Character = "RANDOM";
                     character.Skin.SkinDescription = "";
+                    character.Skin.SkinIndex = 0;
                     break;
                 case 2:
                     character.Character = "ZETTERBURN";
                     character.Skin.SkinDescription = ((eZetterburnSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 3:
                     character.Character = "ORCANE";
                     character.Skin.SkinDescription = ((eOrcaneSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 4:
                     character.Character = "WRASTOR";
                     character.Skin.SkinDescription = ((eWrastorSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 5:
                     character.Character = "KRAGG";
                     character.Skin.SkinDescription = ((eKraggSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 6:
                     character.Character = "FORSBURN";
                     character.Skin.SkinDescription = ((eForsburnSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 7:
                     character.Character = "MAYPUL";
                     character.Skin.SkinDescription = ((eMaypulSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 9:
                     character.Character = "ETALUS";
                     character.Skin.SkinDescription = ((eEtalusSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 10:
                     character.Character = "ORI";
                     character.Skin.SkinDescription = ((eOriSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 11:
                     character.Character = "RANNO";
                     character.Skin.SkinDescription = ((eRannoSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 12:
                     character.Character = "CLAIREN";
                     character.Skin.SkinDescription = ((eClairenSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 13:
                     character.Character = "SYLVANOS";
                     character.Skin.SkinDescription = ((eSylvanosSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 14:
                     character.Character = "ELLIANA";
                     character.Skin.SkinDescription = ((eEllianaSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 15:
                     character.Character = "SHOVEL_KNIGHT";
                     character.Skin.SkinDescription = ((eShovelKnightSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 16:
                     character.Character = "MOLLO";
                     character.Skin.SkinDescription = ((eMolloSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 17:
                     character.Character = "HODAN";
                     character.Skin.SkinDescription = ((eHodanSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 18:
                     character.Character = "POMME";
                     character.Skin.SkinDescription = ((ePommeSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 19:
                     character.Character = "OLYMPIA";
                     character.Skin.SkinDescription = ((eOlympiaSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 default:
                     character.Character = "ABSA";
                     character.Skin.SkinDescription = ((eAbsaSkins)(dSkinIndex)).ToString();
+                    character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
             }
 

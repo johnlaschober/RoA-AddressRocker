@@ -13,7 +13,7 @@ namespace RoA.Memory
 
         public RivalsCharacterSelection()
         {
-            Character = "";
+            Character = "UNKNOWN";
             Skin = new RivalsSkin();
         }
     }
@@ -21,10 +21,12 @@ namespace RoA.Memory
     public class RivalsSkin
     {
         public string SkinDescription { get; set; }
+        public int SkinIndex { get; set; }
+
 
         public RivalsSkin()
         {
-            SkinDescription = "";
+            SkinDescription = "UNKNOWN";
         }
     }
 }

@@ -80,12 +80,22 @@ namespace RoA.RockerUI
             {
                 try
                 {
-                    gameProcess = Process.GetProcessesByName(Constants.ExecutableName).FirstOrDefault();
-                    using (var md5Logic = MD5.Create())
+                    try
                     {
-                        using (var stream = File.OpenRead(gameProcess.MainModule.FileName))
+                        gameProcess = Process.GetProcessesByName(Constants.ExecutableName).FirstOrDefault();
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    if (gameProcess != null)
+                    {
+                        using (var md5Logic = MD5.Create())
                         {
-                            calculatedMD5 = BitConverter.ToString(md5Logic.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+                            using (var stream = File.OpenRead(gameProcess.MainModule.FileName))
+                            {
+                                calculatedMD5 = BitConverter.ToString(md5Logic.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+                            }
                         }
                     }
                 }
@@ -136,7 +146,7 @@ namespace RoA.RockerUI
             {
                 if (!String.IsNullOrEmpty(configFile.StateSavePath))
                 {
-                    string json = JsonConvert.SerializeObject(state);
+                    string json = JsonConvert.SerializeObject(state, Formatting.Indented);
                     File.WriteAllText(configFile.StateSavePath, json);
                 }
             }
@@ -158,8 +168,10 @@ namespace RoA.RockerUI
                 GameState state = (GameState)e.UserState;
                 lblCharacter1.Text = state.P1Character.Character;
                 lblSkinDesc1.Text = state.P1Character.Skin.SkinDescription;
+                lblSkinIndex1.Text = state.P1Character.Skin.SkinIndex.ToString();
                 lblCharacter2.Text = state.P2Character.Character;
                 lblSkinDesc2.Text = state.P2Character.Skin.SkinDescription;
+                lblSkinIndex2.Text = state.P2Character.Skin.SkinIndex.ToString();
                 lblInMatch.Text = state.TourneySet.InMatch.ToString();
                 lblFirstTo.Text = state.TourneySet.TourneyModeBestOf.ToString();
                 lblGames1.Text = state.TourneySet.P1GameCount.ToString();
@@ -171,8 +183,10 @@ namespace RoA.RockerUI
         {
             lblCharacter1.Text = "???";
             lblSkinDesc1.Text =  "???";
+            lblSkinIndex1.Text = "???";
             lblCharacter2.Text = "???";
             lblSkinDesc2.Text =  "???";
+            lblSkinIndex2.Text = "???";
             lblInMatch.Text =    "???";
             lblFirstTo.Text =    "???";
             lblGames1.Text =     "???";

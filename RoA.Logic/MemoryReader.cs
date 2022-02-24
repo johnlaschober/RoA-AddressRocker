@@ -57,21 +57,28 @@ namespace RoA.Logic
         {
             try
             {
-                using (var sharp = new MemorySharp(_gameProcess.Id))
+                if (_gameProcess != null && !_gameProcess.HasExited)
                 {
-                    List<Int32> offsets = pointerItem.PointerAddresses;
-
-                    IntPtr _readMe = _gameModule.BaseAddress + pointerItem.BaseOffset;
-
-                    for (int i = offsets.Count - 1; i >= 0; i--)
+                    using (var sharp = new MemorySharp(_gameProcess.Id))
                     {
-                        IntPtr tmp = sharp.Read<IntPtr>(_readMe, false);
-                        IntPtr tmp_Ptr = tmp + offsets[i];
-                        _readMe = tmp_Ptr;
-                    }
+                        List<Int32> offsets = pointerItem.PointerAddresses;
 
-                    double d = sharp.Read<double>(_readMe, false);
-                    return d;
+                        IntPtr _readMe = _gameModule.BaseAddress + pointerItem.BaseOffset;
+
+                        for (int i = offsets.Count - 1; i >= 0; i--)
+                        {
+                            IntPtr tmp = sharp.Read<IntPtr>(_readMe, false);
+                            IntPtr tmp_Ptr = tmp + offsets[i];
+                            _readMe = tmp_Ptr;
+                        }
+
+                        double d = sharp.Read<double>(_readMe, false);
+                        return d;
+                    }
+                }
+                else
+                {
+                    return -1;
                 }
             }
             catch (Exception)
