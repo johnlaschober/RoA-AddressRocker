@@ -75,6 +75,7 @@ namespace RoA.RockerUI
         {
             Process gameProcess = null;
             string calculatedMD5 = "";
+            GameVersion foundVersion = null;
 
             while (true)
             {
@@ -105,9 +106,19 @@ namespace RoA.RockerUI
                     gameProcess = null;
                 }
 
-                if (gameProcess != null)
+
+                if (!string.IsNullOrEmpty(calculatedMD5))
                 {
-                    MemoryReader reader = new MemoryReader(gameProcess, PointerDirectory.GameVersions.Where(x => x.ExecutableMD5 == calculatedMD5).ToList().First());
+                    List<GameVersion> foundGameVersions = PointerDirectory.GameVersions.Where(x => x.ExecutableMD5 == calculatedMD5).ToList();
+                    if (foundGameVersions.Count > 0)
+                    {
+                        foundVersion = foundGameVersions.First();
+                    }
+                }
+
+                if (gameProcess != null && foundVersion != null)
+                {
+                    MemoryReader reader = new MemoryReader(gameProcess, foundVersion);
                     StateSyncer syncer = new StateSyncer(reader);
 
                     bgwSync.ReportProgress(0, "CONNECTED " + reader._gameVersion.Version);
@@ -173,7 +184,7 @@ namespace RoA.RockerUI
                 lblSkinDesc2.Text = state.P2Character.Skin.SkinDescription;
                 lblSkinIndex2.Text = state.P2Character.Skin.SkinIndex.ToString();
                 lblInMatch.Text = state.TourneySet.InMatch.ToString();
-                lblFirstTo.Text = state.TourneySet.TourneyModeBestOf.ToString();
+                lblBestOf.Text = state.TourneySet.TourneyModeBestOf.ToString();
                 lblGames1.Text = state.TourneySet.P1GameCount.ToString();
                 lblGames2.Text = state.TourneySet.P2GameCount.ToString();
             }
@@ -188,7 +199,7 @@ namespace RoA.RockerUI
             lblSkinDesc2.Text =  "???";
             lblSkinIndex2.Text = "???";
             lblInMatch.Text =    "???";
-            lblFirstTo.Text =    "???";
+            lblBestOf.Text =     "???";
             lblGames1.Text =     "???";
             lblGames2.Text =     "???";
         }

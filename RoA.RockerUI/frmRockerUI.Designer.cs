@@ -35,6 +35,7 @@ namespace RoA.RockerUI
             this.lblProcessStatus = new System.Windows.Forms.Label();
             this.bgwSync = new System.ComponentModel.BackgroundWorker();
             this.grpPlayer1 = new System.Windows.Forms.GroupBox();
+            this.lblSkinIndex1 = new System.Windows.Forms.Label();
             this.lblSkinDesc1 = new System.Windows.Forms.Label();
             this.lblGames1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@ namespace RoA.RockerUI
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpPlayer2 = new System.Windows.Forms.GroupBox();
+            this.lblSkinIndex2 = new System.Windows.Forms.Label();
             this.lblSkinDesc2 = new System.Windows.Forms.Label();
             this.lblGames2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,14 +52,12 @@ namespace RoA.RockerUI
             this.label9 = new System.Windows.Forms.Label();
             this.grpMisc = new System.Windows.Forms.GroupBox();
             this.lblInMatch = new System.Windows.Forms.Label();
-            this.lblFirstTo = new System.Windows.Forms.Label();
+            this.lblBestOf = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtSaveLocation = new System.Windows.Forms.TextBox();
             this.btnSaveDirectory = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblSkinIndex1 = new System.Windows.Forms.Label();
-            this.lblSkinIndex2 = new System.Windows.Forms.Label();
             this.grpPlayer1.SuspendLayout();
             this.grpPlayer2.SuspendLayout();
             this.grpMisc.SuspendLayout();
@@ -116,6 +116,15 @@ namespace RoA.RockerUI
             this.grpPlayer1.TabIndex = 3;
             this.grpPlayer1.TabStop = false;
             this.grpPlayer1.Text = "Player 1";
+            // 
+            // lblSkinIndex1
+            // 
+            this.lblSkinIndex1.AutoSize = true;
+            this.lblSkinIndex1.Location = new System.Drawing.Point(71, 51);
+            this.lblSkinIndex1.Name = "lblSkinIndex1";
+            this.lblSkinIndex1.Size = new System.Drawing.Size(25, 13);
+            this.lblSkinIndex1.TabIndex = 7;
+            this.lblSkinIndex1.Text = "???";
             // 
             // lblSkinDesc1
             // 
@@ -194,6 +203,15 @@ namespace RoA.RockerUI
             this.grpPlayer2.TabStop = false;
             this.grpPlayer2.Text = "Player 2";
             // 
+            // lblSkinIndex2
+            // 
+            this.lblSkinIndex2.AutoSize = true;
+            this.lblSkinIndex2.Location = new System.Drawing.Point(71, 51);
+            this.lblSkinIndex2.Name = "lblSkinIndex2";
+            this.lblSkinIndex2.Size = new System.Drawing.Size(25, 13);
+            this.lblSkinIndex2.TabIndex = 8;
+            this.lblSkinIndex2.Text = "???";
+            // 
             // lblSkinDesc2
             // 
             this.lblSkinDesc2.AutoSize = true;
@@ -256,7 +274,7 @@ namespace RoA.RockerUI
             // grpMisc
             // 
             this.grpMisc.Controls.Add(this.lblInMatch);
-            this.grpMisc.Controls.Add(this.lblFirstTo);
+            this.grpMisc.Controls.Add(this.lblBestOf);
             this.grpMisc.Controls.Add(this.label12);
             this.grpMisc.Controls.Add(this.label13);
             this.grpMisc.Location = new System.Drawing.Point(28, 127);
@@ -266,7 +284,7 @@ namespace RoA.RockerUI
             this.grpMisc.Size = new System.Drawing.Size(218, 55);
             this.grpMisc.TabIndex = 5;
             this.grpMisc.TabStop = false;
-            this.grpMisc.Text = "Misc.";
+            this.grpMisc.Text = "Match";
             // 
             // lblInMatch
             // 
@@ -278,15 +296,15 @@ namespace RoA.RockerUI
             this.lblInMatch.TabIndex = 3;
             this.lblInMatch.Text = "???";
             // 
-            // lblFirstTo
+            // lblBestOf
             // 
-            this.lblFirstTo.AutoSize = true;
-            this.lblFirstTo.Location = new System.Drawing.Point(71, 17);
-            this.lblFirstTo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFirstTo.Name = "lblFirstTo";
-            this.lblFirstTo.Size = new System.Drawing.Size(25, 13);
-            this.lblFirstTo.TabIndex = 2;
-            this.lblFirstTo.Text = "???";
+            this.lblBestOf.AutoSize = true;
+            this.lblBestOf.Location = new System.Drawing.Point(71, 17);
+            this.lblBestOf.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBestOf.Name = "lblBestOf";
+            this.lblBestOf.Size = new System.Drawing.Size(25, 13);
+            this.lblBestOf.TabIndex = 2;
+            this.lblBestOf.Text = "???";
             // 
             // label12
             // 
@@ -306,7 +324,7 @@ namespace RoA.RockerUI
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 13);
             this.label13.TabIndex = 0;
-            this.label13.Text = "First To:";
+            this.label13.Text = "Best Of:";
             // 
             // txtSaveLocation
             // 
@@ -338,24 +356,6 @@ namespace RoA.RockerUI
             this.label6.Size = new System.Drawing.Size(147, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "RoAState.json Save Location";
-            // 
-            // lblSkinIndex1
-            // 
-            this.lblSkinIndex1.AutoSize = true;
-            this.lblSkinIndex1.Location = new System.Drawing.Point(71, 51);
-            this.lblSkinIndex1.Name = "lblSkinIndex1";
-            this.lblSkinIndex1.Size = new System.Drawing.Size(25, 13);
-            this.lblSkinIndex1.TabIndex = 7;
-            this.lblSkinIndex1.Text = "???";
-            // 
-            // lblSkinIndex2
-            // 
-            this.lblSkinIndex2.AutoSize = true;
-            this.lblSkinIndex2.Location = new System.Drawing.Point(71, 51);
-            this.lblSkinIndex2.Name = "lblSkinIndex2";
-            this.lblSkinIndex2.Size = new System.Drawing.Size(25, 13);
-            this.lblSkinIndex2.TabIndex = 8;
-            this.lblSkinIndex2.Text = "???";
             // 
             // frmRockerUI
             // 
@@ -407,7 +407,7 @@ namespace RoA.RockerUI
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox grpMisc;
         private System.Windows.Forms.Label lblInMatch;
-        private System.Windows.Forms.Label lblFirstTo;
+        private System.Windows.Forms.Label lblBestOf;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblGames1;
