@@ -53,7 +53,7 @@ namespace RoA.Logic
             }
         }
 
-        private double ReadGameMakerDouble(PointerItem pointerItem)
+        public double ReadGameMakerDouble(PointerItem pointerItem)
         {
             try
             {

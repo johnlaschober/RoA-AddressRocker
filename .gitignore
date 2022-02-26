@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /RoA.Logic/Fasm.NET.xml
 /RoA.Memory/PointerDirectory.cs
+/RoA.AddressTestUI/GameVersionToTest.cs

@@ -85,10 +85,8 @@ namespace RoA.RockerUI
                     {
                         gameProcess = Process.GetProcessesByName(Constants.ExecutableName).FirstOrDefault();
                     }
-                    catch (Exception)
-                    {
+                    catch (Exception) { }
 
-                    }
                     if (gameProcess != null)
                     {
                         using (var md5Logic = MD5.Create())
@@ -133,10 +131,7 @@ namespace RoA.RockerUI
                                 WriteStateToFile(syncer.gameState);
                             }
                         }
-                        catch (Exception)
-                        {
-
-                        }
+                        catch (Exception) { }
                     }
                     if (gameProcess == null)
                     {
@@ -161,10 +156,7 @@ namespace RoA.RockerUI
                     File.WriteAllText(configFile.StateSavePath, json);
                 }
             }
-            catch (Exception)
-            {
-                // Silently error, don't want to muck up game.
-            }
+            catch (Exception) { } // Silently error, don't want to muck up game.
         }
 
         private void bgwSync_ProgressChanged(object sender, ProgressChangedEventArgs e)
