@@ -3,6 +3,7 @@ Applet to read match data out of Rivals of Aether. A small WinForms application 
 
 ### Current Supported Version
 Game Version: 2.1.1.1
+
 EXE MD5: 981c3eebe98c7597ed1e1aef8f86e08f
 
 ### Note for Users
