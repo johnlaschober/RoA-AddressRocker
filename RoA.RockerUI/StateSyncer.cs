@@ -119,7 +119,7 @@ namespace RoA.RockerUI
                     character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 10:
-                    character.Character = "ORI";
+                    character.Character = "ORI AND SEIN";
                     character.Skin.SkinDescription = ((eOriSkins)(dSkinIndex)).ToString();
                     character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
@@ -144,7 +144,7 @@ namespace RoA.RockerUI
                     character.Skin.SkinIndex = (int)dSkinIndex;
                     break;
                 case 15:
-                    character.Character = "SHOVEL_KNIGHT";
+                    character.Character = "SHOVEL KNIGHT";
                     character.Skin.SkinDescription = ((eShovelKnightSkins)(dSkinIndex)).ToString();
                     character.Skin.SkinIndex = (int)dSkinIndex;
                     break;

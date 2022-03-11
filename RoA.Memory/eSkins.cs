@@ -26,7 +26,7 @@ namespace RoA.Memory
         UNKNOWN15,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -51,7 +51,7 @@ namespace RoA.Memory
         ARCADE,
         INFAMOUS,        
         CHAMPION,
-        RANKED_GOLD,
+        RANKED,
         GOLDEN_PLUSH,
         HEAT_WAVE
     }
@@ -75,8 +75,8 @@ namespace RoA.Memory
         EARLY_ACCESS,
         CHAMPION,
         DREAMSCAPE,
-        LOVERS,
-        RANKED_GOLD,
+        LOA,
+        RANKED,
         GOLDEN_PLUSH,
         UNKNOWN20
     }
@@ -100,8 +100,8 @@ namespace RoA.Memory
         EARLY_ACCESS,
         SHINE,        
         GOLDEN_PLUSH,
-        LOVERS,
-        RANKED_GOLD,
+        LOA,
+        RANKED,
         STEAMPUNK,
         UNKNOWN20
     }
@@ -126,7 +126,7 @@ namespace RoA.Memory
         BRADSHAW,
         COLLEGIATE,
         GOLDEN_PLUSH,
-        RANKED_GOLD,
+        RANKED,
         WHITE_GOLD,
         UNKNOWN20
     }
@@ -149,9 +149,9 @@ namespace RoA.Memory
         ABYSS,
         EARLY_ACCESS,
         PENGUIN,
-        LOVERS,
+        LOA,
         GOLDEN_PLUSH,
-        RANKED_GOLD,
+        RANKED,
         STEAMPUNK,
         UNKNOWN20
     }
@@ -176,7 +176,7 @@ namespace RoA.Memory
         INFAMOUS,
         ON_THE_EDGE,
         CHAMPION,
-        RANKED_GOLD,
+        RANKED,
         GOLDEN_PLUSH,
         UNKNOWN20
     }
@@ -201,7 +201,7 @@ namespace RoA.Memory
         UNKNOWN15,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -226,7 +226,7 @@ namespace RoA.Memory
         UNKNOWN15,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -251,7 +251,7 @@ namespace RoA.Memory
         GOLDEN_PLUSH,
         CHAMPION,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         STEAMPUNK,
         UNKNOWN20
     }
@@ -276,7 +276,7 @@ namespace RoA.Memory
         RAGNIR,
         GOLDEN_PLUSH,
         CHAMPION,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -301,7 +301,7 @@ namespace RoA.Memory
         BURRITO,
         GOLDEN_PLUSH,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         GENESIS,
         UNKNOWN20
     }
@@ -326,7 +326,7 @@ namespace RoA.Memory
         UNKNOWN15,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -351,7 +351,7 @@ namespace RoA.Memory
         CHAMPION,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         HEAT_WAVE,
         UNKNOWN20
     }
@@ -376,7 +376,7 @@ namespace RoA.Memory
         POOL_PARTY,
         CHAMPION,
         STEAMPUNK,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -401,7 +401,7 @@ namespace RoA.Memory
         PANDA,
         GENESIS,
         POOL_PARTY,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -426,7 +426,7 @@ namespace RoA.Memory
         TUXEDO,
         GOLDEN_PLUSH,
         INFAMOUS,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
@@ -451,7 +451,7 @@ namespace RoA.Memory
         UNKNOWN15,
         UNKNOWN16,
         UNKNOWN17,
-        RANKED_GOLD,
+        RANKED,
         UNKNOWN19,
         UNKNOWN20
     }
