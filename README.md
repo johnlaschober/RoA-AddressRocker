@@ -1,6 +1,10 @@
 # RoA-AddressRocker
 Applet to read match data out of Rivals of Aether. A small WinForms application will be run and configured on the machine running Rivals. The configured save location will continuously write a `RoAState.json` file when a change is detected.
 
+### Current Supported Version
+Game Version: 2.1.1.1
+EXE MD5: 981c3eebe98c7597ed1e1aef8f86e08f
+
 ### Note for Users
 Pointer addresses will need to be updated each time a new game version is released. `GameVersion` objects can be created in the `PointerDirectory` static class to check the running Rivals executable's MD5 hash to determine what pointer addresses to use.
 
