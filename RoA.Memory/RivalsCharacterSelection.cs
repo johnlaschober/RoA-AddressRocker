@@ -10,11 +10,13 @@ namespace RoA.Memory
     {
         public string Character { get; set; }
         public RivalsSkin Skin { get; set; }
+        public string SlotState { get; set;  }
 
         public RivalsCharacterSelection()
         {
             Character = "UNKNOWN";
             Skin = new RivalsSkin();
+            SlotState = "HMN";
         }
     }
 

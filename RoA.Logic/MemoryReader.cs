@@ -48,6 +48,14 @@ namespace RoA.Logic
                     return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.IN_MATCH).ToList().First());
                 case ePointerItem.TOURNEY_MODE_BEST_OF:
                     return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.TOURNEY_MODE_BEST_OF).ToList().First());
+                case ePointerItem.P1_SLOT_ACTIVE:
+                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.P1_SLOT_ACTIVE).ToList().First());
+                case ePointerItem.P2_SLOT_ACTIVE:
+                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.P2_SLOT_ACTIVE).ToList().First());
+                case ePointerItem.P1_IS_CPU:
+                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.P1_IS_CPU).ToList().First());
+                case ePointerItem.P2_IS_CPU:
+                    return ReadGameMakerDouble(_gameVersion.PointerItems.Where(x => x.PointerType == ePointerItem.P2_IS_CPU).ToList().First());
                 default:
                     return null;
             }

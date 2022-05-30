@@ -22,9 +22,24 @@ namespace RoA.RockerUI
         public bool Sync()
         {
             GameState newState = new GameState();
-            newState.P1Character = SyncCharacter(1, gameState.P1Character);
-            newState.P2Character = SyncCharacter(2, gameState.P2Character);
             newState.TourneySet = SyncTourneySet();
+            if (gameState.P1Character.Character == "UNKNOWN" || !newState.TourneySet.InMatch)
+            {
+                newState.P1Character = SyncCharacter(1, gameState.P1Character);
+            }
+            else
+            {
+                newState.P1Character = gameState.P1Character;
+            }
+
+            if (gameState.P2Character.Character == "UNKNOWN" || !newState.TourneySet.InMatch)
+            {
+                newState.P2Character = SyncCharacter(2, gameState.P2Character);
+            }
+            else
+            {
+                newState.P2Character = gameState.P2Character;
+            }
 
             if (IsStateDifferent(newState))
             {
@@ -56,17 +71,43 @@ namespace RoA.RockerUI
 
             double dCharacterIndex = 0;
             double dSkinIndex = 0;
+            double dSlotActive = 0;
+            double dSlotCPU = 0;
 
             switch (iPlayerNum)
             {
                 case 1:
                     dCharacterIndex = (double)_memoryReader.ReadItem(ePointerItem.P1_CHARACTER_INDEX);
                     dSkinIndex = (double)_memoryReader.ReadItem(ePointerItem.P1_SKIN_INDEX);
+                    dSlotActive = (double)_memoryReader.ReadItem(ePointerItem.P1_SLOT_ACTIVE);
+                    dSlotCPU = (double)_memoryReader.ReadItem(ePointerItem.P1_IS_CPU);
                     break;
                 case 2:
                     dCharacterIndex = (double)_memoryReader.ReadItem(ePointerItem.P2_CHARACTER_INDEX);
                     dSkinIndex = (double)_memoryReader.ReadItem(ePointerItem.P2_SKIN_INDEX);
+                    dSlotActive = (double)_memoryReader.ReadItem(ePointerItem.P2_SLOT_ACTIVE);
+                    dSlotCPU = (double)_memoryReader.ReadItem(ePointerItem.P2_IS_CPU);
                     break;
+            }
+
+            dCharacterIndex = Clamp(dCharacterIndex, 0, 30); // Clamping in case we get some crazy values due to a bad pointer
+            dSkinIndex = Clamp(dSkinIndex, 0, 30);
+            dSlotActive = Clamp(dSlotActive, 0, 30);
+            dSlotCPU = Clamp(dSlotCPU, 0, 30);
+
+            character.SlotState = eCharacterSlotState.HMN.ToString();
+
+            if (dSlotActive == 1 && dSlotCPU == 0)
+            {
+                character.SlotState = eCharacterSlotState.HMN.ToString();
+            }
+            if (dSlotActive == 1 && dSlotCPU == 1)
+            {
+                character.SlotState = eCharacterSlotState.CPU.ToString();
+            }
+            if (dSlotActive == 0)
+            {
+                character.SlotState = eCharacterSlotState.OFF.ToString();
             }
 
             switch (dCharacterIndex)
@@ -215,8 +256,10 @@ namespace RoA.RockerUI
         {
             if (gameState.P1Character.Character != newState.P1Character.Character ||
                 gameState.P1Character.Skin.SkinDescription != newState.P1Character.Skin.SkinDescription ||
+                gameState.P1Character.SlotState != newState.P1Character.SlotState ||
                 gameState.P2Character.Character != newState.P2Character.Character ||
                 gameState.P2Character.Skin.SkinDescription != newState.P2Character.Skin.SkinDescription ||
+                gameState.P2Character.SlotState != newState.P2Character.SlotState ||
                 gameState.TourneySet.InMatch != newState.TourneySet.InMatch ||
                 gameState.TourneySet.P1GameCount != newState.TourneySet.P1GameCount ||
                 gameState.TourneySet.P2GameCount != newState.TourneySet.P2GameCount ||
@@ -228,6 +271,13 @@ namespace RoA.RockerUI
             {
                 return false;
             }
+        }
+
+        private double Clamp(double value, double min, double max)
+        {
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
         }
     }
 }

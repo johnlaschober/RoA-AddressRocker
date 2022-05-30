@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="eCharacterSlotState.cs" />
     <Compile Include="ePointerItem.cs" />
     <Compile Include="eSkins.cs" />
     <Compile Include="GameState.cs" />

@@ -179,6 +179,8 @@ namespace RoA.RockerUI
                 lblBestOf.Text = state.TourneySet.TourneyModeBestOf.ToString();
                 lblGames1.Text = state.TourneySet.P1GameCount.ToString();
                 lblGames2.Text = state.TourneySet.P2GameCount.ToString();
+                grpPlayer1.Text = String.Format("Player 1 ({0})", state.P1Character.SlotState.ToString());
+                grpPlayer2.Text = String.Format("Player 2 ({0})", state.P2Character.SlotState.ToString());
             }
         }
 
