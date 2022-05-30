@@ -2,20 +2,24 @@
 Applet to read match data out of Rivals of Aether. A small WinForms application will be run and configured on the machine running Rivals. The configured save location will continuously write a `RoAState.json` file when a change is detected.
 
 ### Current Supported Version
-Game Version: 2.1.1.1
+Game Version: 2.1.2.2
 
-EXE MD5: `ea30acce12cf72419d714e1dcba903ad`
+EXE MD5: `48efb9a1921d6524e80fe81c6336947e`
 
 ### Note for Users
 Pointer addresses will need to be updated each time a new game version is released. `GameVersion` objects can be created in the `PointerDirectory` static class to check the running Rivals executable's MD5 hash to determine what pointer addresses to use.
 
-### Current tracked items in `ePointerItem` (as of game version 2.1.1.1)
+### Current tracked items in `ePointerItem` (as of game version 2.1.2.2)
 - P1_CHARACTER_INDEX
 - P2_CHARACTER_INDEX
 - P1_SKIN_INDEX
 - P2_SKIN_INDEX
 - P1_GAME_COUNT
 - P2_GAME_COUNT
+- P1_SLOT_ACTIVE
+- P2_SLOT_ACTIVE
+- P1_IS_CPU
+- P2_IS_CPU
 - IN_MATCH
 - TOURNEY_MODE_BEST_OF
 
