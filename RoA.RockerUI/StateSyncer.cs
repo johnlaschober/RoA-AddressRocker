@@ -23,7 +23,7 @@ namespace RoA.RockerUI
         {
             GameState newState = new GameState();
             newState.TourneySet = SyncTourneySet();
-            if (gameState.P1Character.Character == "UNKNOWN" || !newState.TourneySet.InMatch)
+            if (gameState.P1Character.Character == "UNKNOWN" || gameState.P1Character.Character == "RANDOM" || !newState.TourneySet.InMatch)
             {
                 newState.P1Character = SyncCharacter(1, gameState.P1Character);
             }
@@ -32,7 +32,7 @@ namespace RoA.RockerUI
                 newState.P1Character = gameState.P1Character;
             }
 
-            if (gameState.P2Character.Character == "UNKNOWN" || !newState.TourneySet.InMatch)
+            if (gameState.P2Character.Character == "UNKNOWN" || gameState.P2Character.Character == "RANDOM" || !newState.TourneySet.InMatch)
             {
                 newState.P2Character = SyncCharacter(2, gameState.P2Character);
             }
