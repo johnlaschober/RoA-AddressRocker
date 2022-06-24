@@ -11,6 +11,8 @@ namespace RoA.AddressRocker
     public class ConfigurationFile
     {
         public string StateSavePath { get; set; }
+        public bool ShouldOverrideMD5 { get; set; }
+        public string OverrideMD5 { get; set; }
 
         public void Save(string savePath)
         {

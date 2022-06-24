@@ -153,7 +153,7 @@ namespace RoA.Memory
         GOLDEN_PLUSH,
         RANKED,
         STEAMPUNK,
-        UNKNOWN20
+        HIGH_ROLLER
     }
 
     public enum eEllianaSkins
@@ -277,7 +277,7 @@ namespace RoA.Memory
         GOLDEN_PLUSH,
         CHAMPION,
         RANKED,
-        UNKNOWN19,
+        ON_THE_EDGE,
         UNKNOWN20
     }
 

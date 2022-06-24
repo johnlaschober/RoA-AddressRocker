@@ -24,6 +24,9 @@ namespace RoA.RockerUI
         ConfigurationFile configFile;
 
         private string _rockerConfigPath;
+        private GameVersion foundVersion = null;
+        private Process gameProcess = null;
+
 
         public frmRockerUI()
         {
@@ -58,10 +61,26 @@ namespace RoA.RockerUI
                     configFile = JsonConvert.DeserializeObject<ConfigurationFile>(configText);
 
                     txtSaveLocation.Text = configFile.StateSavePath;
+                    chkOverrideMD5.Checked = configFile.ShouldOverrideMD5;
+                    PopulateMD5Combo();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error reading in RocketConfig.json file: " + ex.Message.ToString(), "Error");
+                }
+            }
+        }
+
+        private void PopulateMD5Combo()
+        {
+            for (int i = PointerDirectory.GameVersions.Count - 1; i >= 0; i--)
+            {
+                var v = PointerDirectory.GameVersions[i];
+                string newItem = v.Version + " - " + v.ExecutableMD5;
+                cmbMD5Override.Items.Add(newItem);
+                if (configFile.ShouldOverrideMD5 && newItem.Contains(configFile.OverrideMD5))
+                {
+                    cmbMD5Override.SelectedItem = newItem;
                 }
             }
         }
@@ -73,9 +92,7 @@ namespace RoA.RockerUI
 
         private void bgwSync_DoWork(object sender, DoWorkEventArgs e)
         {
-            Process gameProcess = null;
             string calculatedMD5 = "";
-            GameVersion foundVersion = null;
 
             while (true)
             {
@@ -107,10 +124,21 @@ namespace RoA.RockerUI
 
                 if (!string.IsNullOrEmpty(calculatedMD5))
                 {
-                    List<GameVersion> foundGameVersions = PointerDirectory.GameVersions.Where(x => x.ExecutableMD5 == calculatedMD5).ToList();
-                    if (foundGameVersions.Count > 0)
+                    if (configFile.ShouldOverrideMD5)
                     {
-                        foundVersion = foundGameVersions.First();
+                        List<GameVersion> foundGameVersions = PointerDirectory.GameVersions.Where(x => x.ExecutableMD5 == configFile.OverrideMD5).ToList();
+                        if (foundGameVersions.Count > 0)
+                        {
+                            foundVersion = foundGameVersions.First();
+                        }
+                    }
+                    else
+                    {
+                        List<GameVersion> foundGameVersions = PointerDirectory.GameVersions.Where(x => x.ExecutableMD5 == calculatedMD5).ToList();
+                        if (foundGameVersions.Count > 0)
+                        {
+                            foundVersion = foundGameVersions.First();
+                        }
                     }
                 }
 
@@ -219,6 +247,43 @@ namespace RoA.RockerUI
                     configFile.StateSavePath = sPrevLocation;
                 }
                 txtSaveLocation.Text = configFile.StateSavePath;
+            }
+        }
+
+        private void cmbMD5Override_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foundVersion = null;
+            gameProcess = null;
+
+            configFile.OverrideMD5 = cmbMD5Override.SelectedItem.ToString();
+            if (!String.IsNullOrEmpty(configFile.OverrideMD5))
+            {
+                configFile.OverrideMD5 = configFile.OverrideMD5.Substring(configFile.OverrideMD5.IndexOf("- ") + 2);
+            }
+            try
+            {
+                configFile.Save(_rockerConfigPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving RockerConfig.json file: " + ex.Message.ToString(), "Error");
+            }
+        }
+
+        private void chkOverrideMD5_CheckedChanged(object sender, EventArgs e)
+        {
+            foundVersion = null;
+            gameProcess = null;
+
+            cmbMD5Override.Enabled = chkOverrideMD5.Checked;
+            configFile.ShouldOverrideMD5 = chkOverrideMD5.Checked;
+            try
+            {
+                configFile.Save(_rockerConfigPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving RockerConfig.json file: " + ex.Message.ToString(), "Error");
             }
         }
     }

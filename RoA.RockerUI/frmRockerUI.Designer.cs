@@ -58,6 +58,8 @@ namespace RoA.RockerUI
             this.txtSaveLocation = new System.Windows.Forms.TextBox();
             this.btnSaveDirectory = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.chkOverrideMD5 = new System.Windows.Forms.CheckBox();
+            this.cmbMD5Override = new System.Windows.Forms.ComboBox();
             this.grpPlayer1.SuspendLayout();
             this.grpPlayer2.SuspendLayout();
             this.grpMisc.SuspendLayout();
@@ -357,11 +359,34 @@ namespace RoA.RockerUI
             this.label6.TabIndex = 8;
             this.label6.Text = "RoAState.json Save Location";
             // 
+            // chkOverrideMD5
+            // 
+            this.chkOverrideMD5.AutoSize = true;
+            this.chkOverrideMD5.Location = new System.Drawing.Point(28, 231);
+            this.chkOverrideMD5.Name = "chkOverrideMD5";
+            this.chkOverrideMD5.Size = new System.Drawing.Size(178, 17);
+            this.chkOverrideMD5.TabIndex = 9;
+            this.chkOverrideMD5.Text = "Override MD5-assigned Pointers";
+            this.chkOverrideMD5.UseVisualStyleBackColor = true;
+            this.chkOverrideMD5.CheckedChanged += new System.EventHandler(this.chkOverrideMD5_CheckedChanged);
+            // 
+            // cmbMD5Override
+            // 
+            this.cmbMD5Override.Enabled = false;
+            this.cmbMD5Override.FormattingEnabled = true;
+            this.cmbMD5Override.Location = new System.Drawing.Point(28, 250);
+            this.cmbMD5Override.Name = "cmbMD5Override";
+            this.cmbMD5Override.Size = new System.Drawing.Size(410, 21);
+            this.cmbMD5Override.TabIndex = 10;
+            this.cmbMD5Override.SelectedIndexChanged += new System.EventHandler(this.cmbMD5Override_SelectedIndexChanged);
+            // 
             // frmRockerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 241);
+            this.ClientSize = new System.Drawing.Size(498, 281);
+            this.Controls.Add(this.cmbMD5Override);
+            this.Controls.Add(this.chkOverrideMD5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSaveDirectory);
             this.Controls.Add(this.txtSaveLocation);
@@ -374,8 +399,8 @@ namespace RoA.RockerUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(514, 280);
-            this.MinimumSize = new System.Drawing.Size(514, 280);
+            this.MaximumSize = new System.Drawing.Size(514, 320);
+            this.MinimumSize = new System.Drawing.Size(514, 320);
             this.Name = "frmRockerUI";
             this.Text = "Address Rocker";
             this.Load += new System.EventHandler(this.frmRockerUI_Load);
@@ -421,6 +446,8 @@ namespace RoA.RockerUI
         private System.Windows.Forms.Label lblSkinDesc2;
         private System.Windows.Forms.Label lblSkinIndex1;
         private System.Windows.Forms.Label lblSkinIndex2;
+        private System.Windows.Forms.CheckBox chkOverrideMD5;
+        private System.Windows.Forms.ComboBox cmbMD5Override;
     }
 }
 
