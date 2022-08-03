@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RoA.AddressTestUI")]
+[assembly: AssemblyTitle("RoA.Points")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RoA.AddressTestUI")]
+[assembly: AssemblyProduct("RoA.Points")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("52a36395-043b-4017-a011-58152beeaa9b")]
+[assembly: Guid("f7aa9f49-48cf-4821-8fb3-dbeb9c8a3ad0")]
 
 // Version information for an assembly consists of the following four values:
 //

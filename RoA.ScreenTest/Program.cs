@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RoA.AddressTestUI
+namespace RoA.ScreenTest
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace RoA.AddressTestUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAddressTest());
+            Application.Run(new Form1());
         }
     }
 }

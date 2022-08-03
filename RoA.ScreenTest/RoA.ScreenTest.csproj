@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52A36395-043B-4017-A011-58152BEEAA9B}</ProjectGuid>
+    <ProjectGuid>{BFC72B63-0151-48F3-BEE5-781F718A5D60}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RoA.AddressTestUI</RootNamespace>
-    <AssemblyName>RoA.AddressTestUI</AssemblyName>
+    <RootNamespace>RoA.ScreenTest</RootNamespace>
+    <AssemblyName>RoA.ScreenTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RoA.RockerUI\bin\Debug\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,18 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheatEngineSchema.cs" />
-    <Compile Include="frmAddressTest.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddressTest.Designer.cs">
-      <DependentUpon>frmAddressTest.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameVersionToTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAddressTest.resx">
-      <DependentUpon>frmAddressTest.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,13 +80,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoA.Logic\RoA.Logic.csproj">
-      <Project>{51A75B2A-EAF2-432A-9283-084C5016CEBF}</Project>
-      <Name>RoA.Logic</Name>
+    <ProjectReference Include="..\RoA.Points\RoA.Points.csproj">
+      <Project>{F7AA9F49-48CF-4821-8FB3-DBEB9C8A3AD0}</Project>
+      <Name>RoA.Points</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RoA.Memory\RoA.Memory.csproj">
-      <Project>{998A7F71-47A0-4A7C-8A12-98B98028E1AF}</Project>
-      <Name>RoA.Memory</Name>
+    <ProjectReference Include="..\RoA.Screen\RoA.Screen.csproj">
+      <Project>{2DF4BDC4-4C91-4B15-8828-F1A425F5F9B2}</Project>
+      <Name>RoA.Screen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
