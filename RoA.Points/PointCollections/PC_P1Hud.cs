@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace RoA.Points.Points
+namespace RoA.Points.PointCollections
 {
-    public static class PC_P1DamageHud // Red HUD in P1 vs P2
+    public static class PC_P1Hud // Red HUD in P1 vs P2
     {
         public static PointCollectionsGroup Group = new PointCollectionsGroup()
         {
@@ -304,7 +304,7 @@ new Point(947, 1059),
                 },
                 new PointCollection() // Red color
                 {
-                    color = ColorTranslator.FromHtml("ED1C24"),
+                    color = ColorTranslator.FromHtml("#ED1C24"),
                     points = new List<Point>()
                     {
                         new Point(516, 1018),

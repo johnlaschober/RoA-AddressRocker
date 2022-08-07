@@ -1,4 +1,5 @@
-﻿using RoA.Points.Points;
+﻿using RoA.Points.PointCollections;
+using RoA.Points.PointScreens;
 using RoA.Screen;
 using System;
 using System.Collections.Generic;
@@ -46,9 +47,19 @@ namespace RoA.ScreenTest
             }
         }
 
+        PS_LocalVersusCSS localVersusCSSScreen;
+        PS_StageSelect stageSelectScreen;
+        PS_LocalVersusMatch localVersusMatchScreen;
+        PS_Pause pauseScreen;
+        PS_LocalVersusSettings localVersusSettings;
 
         private void btnCheckMatch_Click(object sender, EventArgs e)
         {
+            localVersusCSSScreen = new PS_LocalVersusCSS();
+            stageSelectScreen = new PS_StageSelect();
+            localVersusMatchScreen = new PS_LocalVersusMatch();
+            pauseScreen = new PS_Pause();
+            localVersusSettings = new PS_LocalVersusSettings();
             backgroundWorker.RunWorkerAsync();
         }
 
@@ -58,27 +69,81 @@ namespace RoA.ScreenTest
             {
                 Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080));
 
-                string txt = 
-                    $"Tourney: {string.Format("{0:N2}%", ScreenTools.GetMatchingPercentage(screen, PC_TourneyModeText.Group))}" 
-                    + Environment.NewLine 
-                    + $"Versus: {string.Format("{0:N2}%", ScreenTools.GetMatchingPercentage(screen, PC_VersusModeText.Group))}"
-                    + Environment.NewLine
-                    + $"Characters: {string.Format("{0:N2}%", ScreenTools.GetMatchingPercentage(screen, PC_CharacterNamesInCSS.Group))}"
-                    + Environment.NewLine
-                    + $"P1 Damage HUD: {string.Format("{0:N2}%", ScreenTools.GetMatchingPercentage(screen, PC_P1DamageHud.Group))}"
-                    + Environment.NewLine
-                    + $"P2 Damage HUd: {string.Format("{0:N2}%", ScreenTools.GetMatchingPercentage(screen, PC_P2DamageHud.Group))}"
-                    ;
+                Dictionary<string, double> dctOrdering = new Dictionary<string, double>();
 
-                backgroundWorker.ReportProgress(0, txt);
-                Thread.Sleep(1000);
+                double dblTourney = ScreenTools.GetMatchingPercentage(screen, PC_TourneyModeText.Group);
+                string sTourney = $"Tourney: {string.Format("{0:N2}%", dblTourney)}" + Environment.NewLine;
+                dctOrdering[sTourney] = dblTourney;
+
+                double dblVersus = ScreenTools.GetMatchingPercentage(screen, PC_VersusModeText.Group);
+                string sVersus = $"Versus: {string.Format("{0:N2}%", dblVersus)}" + Environment.NewLine;
+                dctOrdering[sVersus] = dblVersus;
+
+                double dblCharacters = ScreenTools.GetMatchingPercentage(screen, PC_CharacterNamesInCSS.Group);
+                string sCharacters = $"Characters: {string.Format("{0:N2}%", dblCharacters)}" + Environment.NewLine;
+                dctOrdering[sCharacters] = dblCharacters;
+
+                double dblP1Hud = ScreenTools.GetMatchingPercentage(screen, PC_P1Hud.Group);
+                string sP1Hud = $"P1 Hud: {string.Format("{0:N2}%", dblP1Hud)}" + Environment.NewLine;
+                dctOrdering[sP1Hud] = dblP1Hud;
+
+                double dblP2Hud = ScreenTools.GetMatchingPercentage(screen, PC_P2Hud.Group);
+                string sP2Hud = $"P2 Hud: {string.Format("{0:N2}%", dblP2Hud)}" + Environment.NewLine;
+                dctOrdering[sP2Hud] = dblP2Hud;
+
+                double dblPurpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
+                string sPurpleBanner = $"Purple Banner: {string.Format("{0:N2}%", dblPurpleBanner)}" + Environment.NewLine;
+                dctOrdering[sPurpleBanner] = dblPurpleBanner;
+
+                double dblSSBigPreview = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectBigPreview.Group);
+                string sSSBigPreview = $"SS Big Preview: {string.Format("{0:N2}%", dblSSBigPreview)}" + Environment.NewLine;
+                dctOrdering[sSSBigPreview] = dblSSBigPreview;
+
+                double dblSSHamburger = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectHamburger.Group);
+                string sSSHamburger = $"SS Hamburger: {string.Format("{0:N2}%", dblSSHamburger)}" + Environment.NewLine;
+                dctOrdering[sSSHamburger] = dblSSHamburger;
+
+                double dblPauseMenu = ScreenTools.GetMatchingPercentage(screen, PC_PauseMenu.Group);
+                string sPauseMenu = $"Pause Menu: {string.Format("{0:N2}%", dblPauseMenu)}" + Environment.NewLine;
+                dctOrdering[sPauseMenu] = dblPauseMenu;
+
+                double dblVersusModeSettings = ScreenTools.GetMatchingPercentage(screen, PC_VersusModeSettings.Group);
+                string sVersusModeSettings = $"Versus Mode Settings: {string.Format("{0:N2}%", dblVersusModeSettings)}" + Environment.NewLine;
+                dctOrdering[sVersusModeSettings] = dblVersusModeSettings;
+
+                string sGroupsOutput = "";
+
+                foreach (var pair in dctOrdering.OrderByDescending(k => k.Value))
+                {
+                    sGroupsOutput += pair.Key;
+                }
+                backgroundWorker.ReportProgress(0, sGroupsOutput);
+
+                string sScreensOutput = "";
+
+                sScreensOutput += "Local Versus CSS: " + localVersusCSSScreen.IsActive(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Stage Select: " + stageSelectScreen.IsActive(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Local Versus Match: " + localVersusMatchScreen.IsActive(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Pause Screen: " + pauseScreen.IsActive(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Local Versus Settings: " + localVersusSettings.IsActive(screen).ToString() + Environment.NewLine;
+
+                backgroundWorker.ReportProgress(1, sScreensOutput);
+
+                Thread.Sleep(250);
                 screen.Dispose();
             }
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            txtBox.Text = e.UserState.ToString();
+            if (e.ProgressPercentage == 0)
+            {
+                txtBox.Text = e.UserState.ToString();
+            }
+            else if (e.ProgressPercentage == 1)
+            {
+                txtScreensBox.Text = e.UserState.ToString();
+            }
         }
     }
 }

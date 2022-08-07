@@ -42,12 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Points\PC_CharacterNamesInCSS.cs" />
-    <Compile Include="Points\PC_P1DamageHud.cs" />
-    <Compile Include="Points\PC_P2DamageHud.cs" />
-    <Compile Include="Points\PC_Template.cs" />
-    <Compile Include="Points\PC_TourneyModeText.cs" />
-    <Compile Include="Points\PC_VersusModeText.cs" />
+    <Compile Include="PointCollections\PC_CharacterNamesInCSS.cs" />
+    <Compile Include="PointCollections\PC_P1Hud.cs" />
+    <Compile Include="PointCollections\PC_P2Hud.cs" />
+    <Compile Include="PointCollections\PC_PauseMenu.cs" />
+    <Compile Include="PointCollections\PC_PurpleBanner.cs" />
+    <Compile Include="PointCollections\PC_StageSelectBigPreview.cs" />
+    <Compile Include="PointCollections\PC_StageSelectHamburger.cs" />
+    <Compile Include="PointCollections\PC_Template.cs" />
+    <Compile Include="PointCollections\PC_TourneyModeText.cs" />
+    <Compile Include="PointCollections\PC_VersusModeSettings.cs" />
+    <Compile Include="PointCollections\PC_VersusModeText.cs" />
+    <Compile Include="PointScreens\IPS.cs" />
+    <Compile Include="PointScreens\PS_LocalVersusCSS.cs" />
+    <Compile Include="PointScreens\PS_LocalVersusMatch.cs" />
+    <Compile Include="PointScreens\PS_LocalVersusSettings.cs" />
+    <Compile Include="PointScreens\PS_Pause.cs" />
+    <Compile Include="PointScreens\PS_StageSelect.cs" />
+    <Compile Include="PointScreens\PS_Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

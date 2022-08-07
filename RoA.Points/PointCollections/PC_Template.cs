@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace RoA.Points.Points
+namespace RoA.Points.PointCollections
 {
     public static class PC_Template
     {

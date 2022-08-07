@@ -35,12 +35,13 @@ namespace RoA.ScreenTest
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnCheckMatch = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtScreensBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnTest
             // 
             this.btnTest.Location = new System.Drawing.Point(10, 10);
-            this.btnTest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(2);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(140, 72);
             this.btnTest.TabIndex = 0;
@@ -51,7 +52,7 @@ namespace RoA.ScreenTest
             // btnGetCoords
             // 
             this.btnGetCoords.Location = new System.Drawing.Point(168, 10);
-            this.btnGetCoords.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGetCoords.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetCoords.Name = "btnGetCoords";
             this.btnGetCoords.Size = new System.Drawing.Size(140, 72);
             this.btnGetCoords.TabIndex = 1;
@@ -62,11 +63,11 @@ namespace RoA.ScreenTest
             // txtBox
             // 
             this.txtBox.Location = new System.Drawing.Point(325, 10);
-            this.txtBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBox.Margin = new System.Windows.Forms.Padding(2);
             this.txtBox.Multiline = true;
             this.txtBox.Name = "txtBox";
             this.txtBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBox.Size = new System.Drawing.Size(267, 347);
+            this.txtBox.Size = new System.Drawing.Size(267, 167);
             this.txtBox.TabIndex = 2;
             this.txtBox.WordWrap = false;
             // 
@@ -77,7 +78,7 @@ namespace RoA.ScreenTest
             // btnCheckMatch
             // 
             this.btnCheckMatch.Location = new System.Drawing.Point(168, 86);
-            this.btnCheckMatch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCheckMatch.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckMatch.Name = "btnCheckMatch";
             this.btnCheckMatch.Size = new System.Drawing.Size(140, 72);
             this.btnCheckMatch.TabIndex = 3;
@@ -91,16 +92,28 @@ namespace RoA.ScreenTest
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             // 
+            // txtScreensBox
+            // 
+            this.txtScreensBox.Location = new System.Drawing.Point(325, 181);
+            this.txtScreensBox.Margin = new System.Windows.Forms.Padding(2);
+            this.txtScreensBox.Multiline = true;
+            this.txtScreensBox.Name = "txtScreensBox";
+            this.txtScreensBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtScreensBox.Size = new System.Drawing.Size(267, 167);
+            this.txtScreensBox.TabIndex = 4;
+            this.txtScreensBox.WordWrap = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.txtScreensBox);
             this.Controls.Add(this.btnCheckMatch);
             this.Controls.Add(this.txtBox);
             this.Controls.Add(this.btnGetCoords);
             this.Controls.Add(this.btnTest);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -116,6 +129,7 @@ namespace RoA.ScreenTest
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btnCheckMatch;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.TextBox txtScreensBox;
     }
 }
 
