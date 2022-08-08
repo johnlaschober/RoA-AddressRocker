@@ -133,6 +133,8 @@ namespace RoA.ScreenTest
                 sScreensOutput += "Local Versus Settings: " + localVersusSettings.IsActive(screen).ToString() + Environment.NewLine;
                 sScreensOutput += "Slot 1: " + slot1.GetSlotType(screen).ToString() + Environment.NewLine;
                 sScreensOutput += "Slot 2: " + slot2.GetSlotType(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Slot 1 Character: " + slot1.GetSlotCharacter(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Slot 2 Character: " + slot2.GetSlotCharacter(screen).ToString() + Environment.NewLine;
 
                 backgroundWorker.ReportProgress(1, sScreensOutput);
 

@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace RoA.Points.PointCollections
 {
-    public static class PC_CSSSlot
+    public static class PC_Slot
     {
         public static PointCollectionsGroup Group = new PointCollectionsGroup()
         {

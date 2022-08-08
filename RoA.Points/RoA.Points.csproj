@@ -43,10 +43,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
-    <Compile Include="PointCollections\PC_CSSSlot.cs" />
+    <Compile Include="PointCollections\PC_Slot.cs" />
     <Compile Include="PointCollections\PC_PlayerMatchHud.cs" />
     <Compile Include="PointCollections\PC_PauseMenu.cs" />
     <Compile Include="PointCollections\PC_PurpleBanner.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotRandom.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotAbsa.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotClairen.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotElliana.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotEtalus.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotForsburn.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotHodan.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotKragg.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotMaypul.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotMollo.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotOlympia.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotOrcane.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotOri.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotPomme.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotRanno.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotShovelKnight.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotSylvanos.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotWrastor.cs" />
+    <Compile Include="PointCollections\SlotCharacters\PC_SlotZetterburn.cs" />
     <Compile Include="PointCollections\PC_StageSelectBigPreview.cs" />
     <Compile Include="PointCollections\PC_StageSelectHamburger.cs" />
     <Compile Include="PointCollections\PC_Template.cs" />

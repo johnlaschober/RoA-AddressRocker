@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,18 @@ namespace RoA.Points
                 newGroup.collections.Add(newCollection);
             }
             return newGroup;
+        }
+
+        public static void SlideGroup(Point startPoint, ref PointCollectionsGroup toShift)
+        {
+            for (int i = 0; i < toShift.collections.Count; i++)
+            {
+                for (int j = 0; j < toShift.collections[i].points.Count; j++)
+                {
+                    var uneditedPoint = toShift.collections[i].points[j];
+                    toShift.collections[i].points[j] = new Point(uneditedPoint.X + startPoint.X, uneditedPoint.Y + startPoint.Y);
+                }
+            }
         }
     }
 }
