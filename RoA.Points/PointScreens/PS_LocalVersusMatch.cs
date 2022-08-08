@@ -12,8 +12,8 @@ namespace RoA.Points.PointScreens
             double purpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
             if (purpleBanner > 80) return false;
 
-            double p1Hud = ScreenTools.GetMatchingPercentage(screen, PC_P1Hud.Group);
-            double p2Hud = ScreenTools.GetMatchingPercentage(screen, PC_P2Hud.Group);
+            double p1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
+            double p2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
 
             return (((p1Hud + p2Hud) / 2) > 90);
         }

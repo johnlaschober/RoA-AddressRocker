@@ -16,7 +16,7 @@ namespace RoA.Points.PointScreens
             double tourneyModeText = ScreenTools.GetMatchingPercentage(screen, PC_TourneyModeText.Group);
             if (versusModeText < 30 && tourneyModeText < 30) return false;
 
-            double charNames = ScreenTools.GetMatchingPercentage(screen, PC_CharacterNamesInCSS.Group);
+            double charNames = ScreenTools.GetMatchingPercentage(screen, PC_CSSCharacterNames.Group);
             return charNames > 70;
         }
     }

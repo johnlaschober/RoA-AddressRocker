@@ -1,4 +1,5 @@
 ﻿using RoA.Points.PointCollections;
+using RoA.Points.PointObjects;
 using RoA.Points.PointScreens;
 using RoA.Screen;
 using System;
@@ -52,6 +53,8 @@ namespace RoA.ScreenTest
         PS_LocalVersusMatch localVersusMatchScreen;
         PS_Pause pauseScreen;
         PS_LocalVersusSettings localVersusSettings;
+        PO_CSSSlot slot1;
+        PO_CSSSlot slot2;
 
         private void btnCheckMatch_Click(object sender, EventArgs e)
         {
@@ -60,6 +63,8 @@ namespace RoA.ScreenTest
             localVersusMatchScreen = new PS_LocalVersusMatch();
             pauseScreen = new PS_Pause();
             localVersusSettings = new PS_LocalVersusSettings();
+            slot1 = new PO_CSSSlot(1);
+            slot2 = new PO_CSSSlot(2);
             backgroundWorker.RunWorkerAsync();
         }
 
@@ -79,15 +84,15 @@ namespace RoA.ScreenTest
                 string sVersus = $"Versus: {string.Format("{0:N2}%", dblVersus)}" + Environment.NewLine;
                 dctOrdering[sVersus] = dblVersus;
 
-                double dblCharacters = ScreenTools.GetMatchingPercentage(screen, PC_CharacterNamesInCSS.Group);
+                double dblCharacters = ScreenTools.GetMatchingPercentage(screen, PC_CSSCharacterNames.Group);
                 string sCharacters = $"Characters: {string.Format("{0:N2}%", dblCharacters)}" + Environment.NewLine;
                 dctOrdering[sCharacters] = dblCharacters;
 
-                double dblP1Hud = ScreenTools.GetMatchingPercentage(screen, PC_P1Hud.Group);
+                double dblP1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
                 string sP1Hud = $"P1 Hud: {string.Format("{0:N2}%", dblP1Hud)}" + Environment.NewLine;
                 dctOrdering[sP1Hud] = dblP1Hud;
 
-                double dblP2Hud = ScreenTools.GetMatchingPercentage(screen, PC_P2Hud.Group);
+                double dblP2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
                 string sP2Hud = $"P2 Hud: {string.Format("{0:N2}%", dblP2Hud)}" + Environment.NewLine;
                 dctOrdering[sP2Hud] = dblP2Hud;
 
@@ -126,6 +131,8 @@ namespace RoA.ScreenTest
                 sScreensOutput += "Local Versus Match: " + localVersusMatchScreen.IsActive(screen).ToString() + Environment.NewLine;
                 sScreensOutput += "Pause Screen: " + pauseScreen.IsActive(screen).ToString() + Environment.NewLine;
                 sScreensOutput += "Local Versus Settings: " + localVersusSettings.IsActive(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Slot 1: " + slot1.GetSlotType(screen).ToString() + Environment.NewLine;
+                sScreensOutput += "Slot 2: " + slot2.GetSlotType(screen).ToString() + Environment.NewLine;
 
                 backgroundWorker.ReportProgress(1, sScreensOutput);
 

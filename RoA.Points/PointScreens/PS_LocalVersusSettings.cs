@@ -9,7 +9,7 @@ namespace RoA.Points.PointScreens
     {
         public bool IsActive(Bitmap screen)
         {
-            double characters = ScreenTools.GetMatchingPercentage(screen, PC_CharacterNamesInCSS.Group);
+            double characters = ScreenTools.GetMatchingPercentage(screen, PC_CSSCharacterNames.Group);
 
             if (characters > 70) return false;
 

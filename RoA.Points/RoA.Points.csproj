@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PointCollections\PC_CharacterNamesInCSS.cs" />
-    <Compile Include="PointCollections\PC_P1Hud.cs" />
-    <Compile Include="PointCollections\PC_P2Hud.cs" />
+    <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
+    <Compile Include="PointCollections\PC_CSSSlot.cs" />
+    <Compile Include="PointCollections\PC_PlayerMatchHud.cs" />
     <Compile Include="PointCollections\PC_PauseMenu.cs" />
     <Compile Include="PointCollections\PC_PurpleBanner.cs" />
     <Compile Include="PointCollections\PC_StageSelectBigPreview.cs" />
@@ -53,6 +53,8 @@
     <Compile Include="PointCollections\PC_TourneyModeText.cs" />
     <Compile Include="PointCollections\PC_VersusModeSettings.cs" />
     <Compile Include="PointCollections\PC_VersusModeText.cs" />
+    <Compile Include="PointHelper.cs" />
+    <Compile Include="PointObjects\PO_CSSSlot.cs" />
     <Compile Include="PointScreens\IPS.cs" />
     <Compile Include="PointScreens\PS_LocalVersusCSS.cs" />
     <Compile Include="PointScreens\PS_LocalVersusMatch.cs" />
