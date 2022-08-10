@@ -1,5 +1,4 @@
-﻿using RoA.Screen;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace RoA.Points.PointCollections
@@ -11,42 +10,33 @@ namespace RoA.Points.PointCollections
             collections = new List<PointCollection>()
             {
                 new PointCollection()
-                {
-                    color = Color.Black,
-                    points = new List<Point>()
-                    {
-                        new Point(39, 177),
-new Point(47, 251),
-new Point(54, 98),
-new Point(57, 217),
-new Point(63, 152),
-new Point(70, 269),
-new Point(102, 282),
-new Point(119, 249),
-new Point(129, 177),
-new Point(134, 94),
-new Point(152, 301),
-new Point(163, 122),
-new Point(179, 154),
-new Point(193, 241),
-new Point(202, 64),
-new Point(213, 167),
-new Point(237, 192),
-new Point(259, 207),
-new Point(262, 93),
-new Point(278, 262),
-new Point(285, 223),
-new Point(294, 196),
-new Point(305, 109),
-new Point(309, 26),
-new Point(316, 170),
-new Point(326, 76),
-new Point(330, 210),
-new Point(338, 133),
-new Point(402, 269),
-new Point(414, 193)
-                    }
-                }
+{
+    color = ColorTranslator.FromHtml("#443345"),
+    points = new List<Point>()
+    {
+        new Point(252, 144),
+new Point(259, 148),
+new Point(263, 159),
+new Point(272, 164),
+new Point(280, 185),
+new Point(280, 219),
+new Point(299, 176),
+new Point(300, 204),
+new Point(303, 215),
+new Point(312, 152),
+new Point(316, 163),
+new Point(320, 203),
+new Point(324, 112),
+new Point(328, 148),
+new Point(331, 207),
+new Point(332, 88),
+new Point(332, 101),
+new Point(340, 124),
+new Point(391, 191),
+new Point(419, 187)
+    }
+},
+
             }
         };
     }

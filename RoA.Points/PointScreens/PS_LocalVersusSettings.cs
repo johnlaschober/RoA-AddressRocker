@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using RoA.Points.PointCollections;
-using RoA.Screen;
 
 namespace RoA.Points.PointScreens
 {

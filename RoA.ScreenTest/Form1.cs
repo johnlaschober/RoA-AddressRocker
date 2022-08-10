@@ -1,4 +1,6 @@
-﻿using RoA.Points.PointCollections;
+﻿using Newtonsoft.Json;
+using RoA.Points;
+using RoA.Points.PointCollections;
 using RoA.Points.PointObjects;
 using RoA.Points.PointScreens;
 using RoA.Screen;
@@ -20,12 +22,6 @@ namespace RoA.ScreenTest
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            btnTest.ForeColor = ScreenTools.GetColorFromScreen(new Point(0, 0));
-            btnTest.BackColor = btnTest.ForeColor;
         }
 
         private void btnGetCoords_Click(object sender, EventArgs e)
@@ -56,6 +52,9 @@ namespace RoA.ScreenTest
         PO_CSSSlot slot1;
         PO_CSSSlot slot2;
 
+        ScreenSyncer syncer;
+        ScreenState prevScreenState;
+
         private void btnCheckMatch_Click(object sender, EventArgs e)
         {
             localVersusCSSScreen = new PS_LocalVersusCSS();
@@ -65,14 +64,42 @@ namespace RoA.ScreenTest
             localVersusSettings = new PS_LocalVersusSettings();
             slot1 = new PO_CSSSlot(1);
             slot2 = new PO_CSSSlot(2);
+
+            syncer = new ScreenSyncer();
             backgroundWorker.RunWorkerAsync();
+            bgwSyncer.RunWorkerAsync();
+        }
+
+        private void bgwSyncer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            prevScreenState = null;
+
+            while (true)
+            {
+                Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
+
+                var newScreenState = syncer.Sync(screen, prevScreenState);
+
+                bgwSyncer.ReportProgress(0, JsonConvert.SerializeObject(newScreenState, Formatting.Indented));
+
+                prevScreenState = newScreenState;
+
+                Thread.Sleep(50);
+
+                screen.Dispose();
+            }
+        }
+
+        private void bgwSyncer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            txtJSON.Text = e.UserState.ToString();
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
             {
-                Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080));
+                Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
 
                 Dictionary<string, double> dctOrdering = new Dictionary<string, double>();
 
@@ -138,7 +165,7 @@ namespace RoA.ScreenTest
 
                 backgroundWorker.ReportProgress(1, sScreensOutput);
 
-                Thread.Sleep(250);
+                Thread.Sleep(50);
                 screen.Dispose();
             }
         }
@@ -152,6 +179,20 @@ namespace RoA.ScreenTest
             else if (e.ProgressPercentage == 1)
             {
                 txtScreensBox.Text = e.UserState.ToString();
+            }
+        }
+
+        private void btnTwoImages_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Title = "Unedited image";
+            openFileDialog1.Title = "Edited image";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    txtJSON.Text = ScreenTools.GetCodeStringFromBitmaps(openFileDialog.FileName, openFileDialog1.FileName);
+                }
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoA.Screen
+namespace RoA.Points
 {
     public class PointCollection
     {

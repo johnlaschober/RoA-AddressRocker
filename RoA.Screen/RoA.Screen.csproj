@@ -43,10 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PointCollection.cs" />
-    <Compile Include="PointCollectionsGroup.cs" />
-    <Compile Include="ScreenTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenState.cs" />
+    <Compile Include="ScreenSyncer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoA.Points\RoA.Points.csproj">
+      <Project>{f7aa9f49-48cf-4821-8fb3-dbeb9c8a3ad0}</Project>
+      <Name>RoA.Points</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PointCollection.cs" />
+    <Compile Include="PointCollectionsGroup.cs" />
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
     <Compile Include="PointCollections\PC_Slot.cs" />
     <Compile Include="PointCollections\PC_PlayerMatchHud.cs" />
@@ -82,12 +84,7 @@
     <Compile Include="PointScreens\PS_StageSelect.cs" />
     <Compile Include="PointScreens\PS_Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RoA.Screen\RoA.Screen.csproj">
-      <Project>{2df4bdc4-4c91-4b15-8828-f1a425f5f9b2}</Project>
-      <Name>RoA.Screen</Name>
-    </ProjectReference>
+    <Compile Include="ScreenTools.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,4 @@
 ﻿using RoA.Points.PointCollections;
-using RoA.Screen;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -149,7 +148,16 @@ namespace RoA.Points.PointObjects
             dctCharacters["WRASTOR"] = ScreenTools.GetMatchingPercentage(screen, slotWrastor);
             dctCharacters["ZETTERBURN"] = ScreenTools.GetMatchingPercentage(screen, slotZetterburn);
 
-            return dctCharacters.OrderByDescending(k => k.Value).ToList().First().Key;
+            var matching = dctCharacters.Where(k => k.Value >= 100).ToList();
+
+            if (matching.Count > 0)
+            {
+                return matching.First().Key;
+            }
+            else
+            {
+                return "UNKNOWN";
+            }
         }
     }
 }

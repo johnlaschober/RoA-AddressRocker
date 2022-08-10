@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using RoA.Points.PointCollections;
-using RoA.Screen;
 
 namespace RoA.Points.PointScreens
 {
@@ -17,7 +16,7 @@ namespace RoA.Points.PointScreens
             if (versusModeText < 30 && tourneyModeText < 30) return false;
 
             double charNames = ScreenTools.GetMatchingPercentage(screen, PC_CSSCharacterNames.Group);
-            return charNames > 70;
+            return charNames > 60;
         }
     }
 }

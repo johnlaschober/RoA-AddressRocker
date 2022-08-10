@@ -29,32 +29,24 @@ namespace RoA.ScreenTest
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnTest = new System.Windows.Forms.Button();
             this.btnGetCoords = new System.Windows.Forms.Button();
             this.txtBox = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnCheckMatch = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.txtScreensBox = new System.Windows.Forms.TextBox();
+            this.txtJSON = new System.Windows.Forms.TextBox();
+            this.bgwSyncer = new System.ComponentModel.BackgroundWorker();
+            this.btnTwoImages = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(10, 10);
-            this.btnTest.Margin = new System.Windows.Forms.Padding(2);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(140, 72);
-            this.btnTest.TabIndex = 0;
-            this.btnTest.Text = "0,0 Color Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // btnGetCoords
             // 
-            this.btnGetCoords.Location = new System.Drawing.Point(168, 10);
+            this.btnGetCoords.Location = new System.Drawing.Point(11, 11);
             this.btnGetCoords.Margin = new System.Windows.Forms.Padding(2);
             this.btnGetCoords.Name = "btnGetCoords";
-            this.btnGetCoords.Size = new System.Drawing.Size(140, 72);
+            this.btnGetCoords.Size = new System.Drawing.Size(95, 40);
             this.btnGetCoords.TabIndex = 1;
             this.btnGetCoords.Text = "Get 4CFF00 Coords";
             this.btnGetCoords.UseVisualStyleBackColor = true;
@@ -62,12 +54,12 @@ namespace RoA.ScreenTest
             // 
             // txtBox
             // 
-            this.txtBox.Location = new System.Drawing.Point(325, 10);
+            this.txtBox.Location = new System.Drawing.Point(393, 10);
             this.txtBox.Margin = new System.Windows.Forms.Padding(2);
             this.txtBox.Multiline = true;
             this.txtBox.Name = "txtBox";
             this.txtBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBox.Size = new System.Drawing.Size(267, 167);
+            this.txtBox.Size = new System.Drawing.Size(199, 231);
             this.txtBox.TabIndex = 2;
             this.txtBox.WordWrap = false;
             // 
@@ -77,10 +69,10 @@ namespace RoA.ScreenTest
             // 
             // btnCheckMatch
             // 
-            this.btnCheckMatch.Location = new System.Drawing.Point(168, 86);
+            this.btnCheckMatch.Location = new System.Drawing.Point(209, 11);
             this.btnCheckMatch.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckMatch.Name = "btnCheckMatch";
-            this.btnCheckMatch.Size = new System.Drawing.Size(140, 72);
+            this.btnCheckMatch.Size = new System.Drawing.Size(95, 40);
             this.btnCheckMatch.TabIndex = 3;
             this.btnCheckMatch.Text = "Check Match";
             this.btnCheckMatch.UseVisualStyleBackColor = true;
@@ -94,25 +86,58 @@ namespace RoA.ScreenTest
             // 
             // txtScreensBox
             // 
-            this.txtScreensBox.Location = new System.Drawing.Point(325, 181);
+            this.txtScreensBox.Location = new System.Drawing.Point(393, 245);
             this.txtScreensBox.Margin = new System.Windows.Forms.Padding(2);
             this.txtScreensBox.Multiline = true;
             this.txtScreensBox.Name = "txtScreensBox";
             this.txtScreensBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtScreensBox.Size = new System.Drawing.Size(267, 167);
+            this.txtScreensBox.Size = new System.Drawing.Size(199, 202);
             this.txtScreensBox.TabIndex = 4;
             this.txtScreensBox.WordWrap = false;
+            // 
+            // txtJSON
+            // 
+            this.txtJSON.Location = new System.Drawing.Point(11, 55);
+            this.txtJSON.Margin = new System.Windows.Forms.Padding(2);
+            this.txtJSON.Multiline = true;
+            this.txtJSON.Name = "txtJSON";
+            this.txtJSON.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtJSON.Size = new System.Drawing.Size(378, 392);
+            this.txtJSON.TabIndex = 5;
+            this.txtJSON.WordWrap = false;
+            // 
+            // bgwSyncer
+            // 
+            this.bgwSyncer.WorkerReportsProgress = true;
+            this.bgwSyncer.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSyncer_DoWork);
+            this.bgwSyncer.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwSyncer_ProgressChanged);
+            // 
+            // btnTwoImages
+            // 
+            this.btnTwoImages.Location = new System.Drawing.Point(110, 11);
+            this.btnTwoImages.Margin = new System.Windows.Forms.Padding(2);
+            this.btnTwoImages.Name = "btnTwoImages";
+            this.btnTwoImages.Size = new System.Drawing.Size(95, 40);
+            this.btnTwoImages.TabIndex = 6;
+            this.btnTwoImages.Text = "Get Coords from Two Images";
+            this.btnTwoImages.UseVisualStyleBackColor = true;
+            this.btnTwoImages.Click += new System.EventHandler(this.btnTwoImages_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(600, 458);
+            this.Controls.Add(this.btnTwoImages);
+            this.Controls.Add(this.txtJSON);
             this.Controls.Add(this.txtScreensBox);
             this.Controls.Add(this.btnCheckMatch);
             this.Controls.Add(this.txtBox);
             this.Controls.Add(this.btnGetCoords);
-            this.Controls.Add(this.btnTest);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -122,14 +147,16 @@ namespace RoA.ScreenTest
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnGetCoords;
         private System.Windows.Forms.TextBox txtBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btnCheckMatch;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.TextBox txtScreensBox;
+        private System.Windows.Forms.TextBox txtJSON;
+        private System.ComponentModel.BackgroundWorker bgwSyncer;
+        private System.Windows.Forms.Button btnTwoImages;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
