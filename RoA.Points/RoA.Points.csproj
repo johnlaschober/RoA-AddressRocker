@@ -45,6 +45,17 @@
     <Compile Include="PointCollection.cs" />
     <Compile Include="PointCollectionsGroup.cs" />
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings0.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings1.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings2.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings3.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings4.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings5.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings6.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings7.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings8.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_Settings9.cs" />
+    <Compile Include="PointCollections\SettingsNumbers\PC_SettingsDash.cs" />
     <Compile Include="PointCollections\PC_Slot.cs" />
     <Compile Include="PointCollections\PC_PlayerMatchHud.cs" />
     <Compile Include="PointCollections\PC_PauseMenu.cs" />
@@ -76,6 +87,7 @@
     <Compile Include="PointCollections\PC_VersusModeText.cs" />
     <Compile Include="PointHelper.cs" />
     <Compile Include="PointObjects\PO_CSSSlot.cs" />
+    <Compile Include="PointObjects\PO_SettingsNumber.cs" />
     <Compile Include="PointScreens\IPS.cs" />
     <Compile Include="PointScreens\PS_LocalVersusCSS.cs" />
     <Compile Include="PointScreens\PS_LocalVersusMatch.cs" />

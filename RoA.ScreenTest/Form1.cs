@@ -100,6 +100,7 @@ namespace RoA.ScreenTest
             while (true)
             {
                 Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
+                //Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080), null);
 
                 Dictionary<string, double> dctOrdering = new Dictionary<string, double>();
 

@@ -20,6 +20,11 @@ namespace RoA.Screen
             objects = new Objects();
         }
 
+        private GameState gameState = null;
+        PlayerState p1MatchState;
+        PlayerState p2MatchState;
+        int stockSetting = 99;
+
         public ScreenState Sync(Bitmap screen, ScreenState prevState)
         {
             ScreenState newState;
@@ -35,6 +40,12 @@ namespace RoA.Screen
 
             if (screens.localCSS.IsActive(screen))
             {
+                bool recheckSettings = false;
+                if (prevState.ScreenName == "LOCAL SETTINGS")
+                {
+                    recheckSettings = true;
+                }
+
                 newState.ScreenName = "LOCAL CSS";
                 newState.P1Character = objects.slot_p1.GetSlotCharacter(screen);
                 newState.P2Character = objects.slot_p2.GetSlotCharacter(screen);
@@ -45,6 +56,12 @@ namespace RoA.Screen
             else if (screens.localSettings.IsActive(screen))
             {
                 newState.ScreenName = "LOCAL SETTINGS";
+
+                newState.TourneyBestOf = objects.settings_tourneyBestOfNumber.GetNumber(screen);
+                newState.Stock = objects.settings_stockNumber.GetNumber(screen);
+                newState.Time = objects.settings_timeNumber.GetNumber(screen);
+
+                int.TryParse(newState.Stock, out stockSetting);
             }
             else if (screens.stageSelect.IsActive(screen))
             {
@@ -52,7 +69,26 @@ namespace RoA.Screen
             }
             else if (screens.localMatch.IsActive(screen))
             {
+                if (prevState.ScreenName == "LOCAL CSS" || prevState.ScreenName == "STAGE SELECT")
+                {
+                    p1MatchState = new PlayerState(1, newState.P1Character);
+                    p2MatchState = new PlayerState(2, newState.P2Character);
+
+                    List<PlayerState> gamePlayers = new List<PlayerState>() { p1MatchState, p2MatchState };
+
+                    gameState = new GameState(stockSetting, gamePlayers);
+                }
+
                 newState.ScreenName = "LOCAL MATCH";
+
+                if (gameState != null)
+                {
+                    gameState.Sync(screen);
+                    newState.P1Stock = gameState.dctPlayerStocks[p1MatchState].stockCount.ToString();
+                    newState.P1Shaking = gameState.dctPlayerStocks[p1MatchState].shaking.ToString();
+                    newState.P2Stock = gameState.dctPlayerStocks[p2MatchState].stockCount.ToString();
+                    newState.P2Shaking = gameState.dctPlayerStocks[p2MatchState].shaking.ToString();
+                }
             }
             else if (screens.pause.IsActive(screen))
             {
@@ -86,10 +122,18 @@ namespace RoA.Screen
         public PO_CSSSlot slot_p1;
         public PO_CSSSlot slot_p2;
 
+        public PO_SettingsNumber settings_tourneyBestOfNumber;
+        public PO_SettingsNumber settings_stockNumber;
+        public PO_SettingsNumber settings_timeNumber;
+
         public Objects()
         {
             slot_p1 = new PO_CSSSlot(1);
             slot_p2 = new PO_CSSSlot(2);
+
+            settings_tourneyBestOfNumber = new PO_SettingsNumber(new Point(1144, 242));
+            settings_stockNumber = new PO_SettingsNumber(new Point(1144, 298));
+            settings_timeNumber = new PO_SettingsNumber(new Point(1144, 354));
         }
     }
 }

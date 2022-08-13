@@ -175,7 +175,7 @@ namespace RoA.Points
         }
 
 
-        public static double GetMatchingPercentage(Bitmap screen, PointCollectionsGroup group)
+        public static double GetMatchingPercentage(Bitmap screen, PointCollectionsGroup group, bool checkWhite = false)
         {
             int matching = 0;
             int totalPoints = 0;
@@ -190,6 +190,15 @@ namespace RoA.Points
                         foundColor.B == collection.color.B)
                     {
                         matching++;
+                    }
+                    else if (checkWhite)
+                    {
+                        if (foundColor.R == Color.White.R &&
+                            foundColor.G == Color.White.G &&
+                            foundColor.B == Color.White.B)
+                        {
+                            matching++;
+                        }
                     }
                 }
                 totalPoints += collection.points.Count;

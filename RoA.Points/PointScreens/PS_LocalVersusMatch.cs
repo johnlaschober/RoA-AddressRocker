@@ -14,7 +14,7 @@ namespace RoA.Points.PointScreens
             double p1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
             double p2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
 
-            return (((p1Hud + p2Hud) / 2) > 90);
+            return (p1Hud > 95 || p2Hud > 95); // It is a bad idea to base active state on a hud that will shake on stock loss
         }
     }
 }
