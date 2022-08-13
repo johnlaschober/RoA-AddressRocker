@@ -11,10 +11,10 @@ namespace RoA.Points.PointScreens
             double purpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
             if (purpleBanner > 80) return false;
 
-            double p1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
-            double p2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
+            double staticTimerDouble = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerDoubleDigits.Group);
+            double staticTimerSingle = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerSingleDigits.Group);
 
-            return (p1Hud > 95 || p2Hud > 95); // It is a bad idea to base active state on a hud that will shake on stock loss
+            return (staticTimerDouble >= 100 || staticTimerSingle >= 100);
         }
     }
 }

@@ -33,14 +33,17 @@ namespace RoA.Screen
             foreach (var player in players)
             {
                 double hudPercent = 100;
+                double colorPercent = 100;
 
                 switch (player.playerNum)
                 {
                     case 1:
                         hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
+                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1HudColor());
                         break;
                     case 2:
                         hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
+                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2HudColor());
                         break;
                     case 3:
                         break;
@@ -48,7 +51,7 @@ namespace RoA.Screen
                         break;
                 }
 
-                if (hudPercent < 80 && !dctPlayerStocks[player].shaking)
+                if (hudPercent < 80 && !dctPlayerStocks[player].shaking && colorPercent < 100)
                 {
                     dctPlayerStocks[player].stockCount--;
                     dctPlayerStocks[player].shaking = true;

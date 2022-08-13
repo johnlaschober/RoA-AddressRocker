@@ -54,11 +54,26 @@ namespace RoA.Points.PointCollections
             }
         };
 
-        private static PointCollectionsGroup CreateHudGroup(Point hudStart, Color newColor)
+        private static PointCollectionsGroup SinglePointGroup = new PointCollectionsGroup()
         {
-            PointCollectionsGroup group = PointHelper.GetGroupClone(Group);
-            group.collections[group.collections.Count - 1].color = newColor;
-            foreach (var pc in group.collections)
+            collections = new List<PointCollection>()
+            {
+                new PointCollection()
+                {
+                    color = ColorTranslator.FromHtml("#ED1C24"),
+                    points = new List<Point>()
+                    {
+                        new Point(58, 37)
+                    }
+                }
+            }
+        };
+
+        private static PointCollectionsGroup CreateHudGroup(Point hudStart, Color newColor, PointCollectionsGroup group)
+        {
+            PointCollectionsGroup localGroup = PointHelper.GetGroupClone(group);
+            localGroup.collections[localGroup.collections.Count - 1].color = newColor;
+            foreach (var pc in localGroup.collections)
             {
                 for (int i = 0; i < pc.points.Count; i++)
                 {
@@ -66,17 +81,27 @@ namespace RoA.Points.PointCollections
                 }
             }
 
-            return group;
+            return localGroup;
         }
 
         public static PointCollectionsGroup P1Hud() // 1 v 1
         {
-            return CreateHudGroup(new Point(500, 984), ColorTranslator.FromHtml("#ED1C24"));
+            return CreateHudGroup(new Point(500, 984), ColorTranslator.FromHtml("#ED1C24"), Group);
+        }
+
+        public static PointCollectionsGroup P1HudColor()
+        {
+            return CreateHudGroup(new Point(500, 984), ColorTranslator.FromHtml("#ED1C24"), SinglePointGroup);
         }
 
         public static PointCollectionsGroup P2Hud() // 1 v 1
         {
-            return CreateHudGroup(new Point(976, 984), ColorTranslator.FromHtml("#00B7EF"));
+            return CreateHudGroup(new Point(976, 984), ColorTranslator.FromHtml("#00B7EF"), Group);
+        }
+
+        public static PointCollectionsGroup P2HudColor()
+        {
+            return CreateHudGroup(new Point(976, 984), ColorTranslator.FromHtml("#00B7EF"), SinglePointGroup);
         }
     }
 }
