@@ -1,5 +1,6 @@
 ﻿using RoA.Points;
 using RoA.Points.PointCollections;
+using RoA.Points.PointObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,72 +15,53 @@ namespace RoA.Screen
         private int startingStockCount;
         private List<PlayerState> players;
 
-        public Dictionary<PlayerState, StockState> dctPlayerStocks;
+        public Dictionary<PlayerState, PO_MatchPlayerHud> dctPlayerHuds;
+
+        private bool updateHuds = true;
 
         public GameState(int startingStockCount, List<PlayerState> players)
         {
             this.startingStockCount = startingStockCount;
             this.players = players;
+            this.updateHuds = true;
 
-            dctPlayerStocks = new Dictionary<PlayerState, StockState>();
+            dctPlayerHuds = new Dictionary<PlayerState, PO_MatchPlayerHud>();
+
             foreach (var player in this.players)
             {
-                dctPlayerStocks[player] = new StockState(this.startingStockCount);
+                dctPlayerHuds[player] = new PO_MatchPlayerHud(player.playerNum, player.slotType == "CPU");
             }
         }
 
         public void Sync(Bitmap screen)
         {
-            foreach (var player in players)
+            if (updateHuds)
             {
-                double hudPercent = 100;
-                double colorPercent = 100;
+                var dblGAME = ScreenTools.GetMatchingPercentage(screen, PC_GAME.Group);
 
-                bool isCPU = player.slotType == "CPU";
-
-                switch (player.playerNum)
+                foreach (var player in players)
                 {
-                    case 1:
-                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud(isCPU));
-                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1HudColor(isCPU));
-                        break;
-                    case 2:
-                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud(isCPU));
-                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2HudColor(isCPU));
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
+                    dctPlayerHuds[player].UpdateInfo(screen, dblGAME);
+
+                    if (player.playerNum == 1)
+                    {
+                        Console.WriteLine($"{DateTime.UtcNow}: {player.playerNum}: stocks:{dctPlayerHuds[player].GetStockCount()}");
+                    }
                 }
 
-                if (hudPercent < 75 && !dctPlayerStocks[player].shaking && colorPercent < 100)
+                int playersWithNoStocks = 0;
+                foreach (var player in players)
                 {
-                    dctPlayerStocks[player].stockCount--;
-                    dctPlayerStocks[player].shaking = true;
+                    if (dctPlayerHuds[player].GetStockCount() <= 0)
+                    {
+                        playersWithNoStocks++;
+                    }
                 }
-                else if (hudPercent >= 100 && dctPlayerStocks[player].shaking && colorPercent >= 100)
+                if (playersWithNoStocks >= players.Count - 1)
                 {
-                    dctPlayerStocks[player].shaking = false;
-                }
-
-                if (player.playerNum == 1)
-                {
-                    Console.WriteLine($"{DateTime.UtcNow}: {player.playerNum}: hudPercent:{hudPercent}: stocks:{dctPlayerStocks[player].stockCount}: shaking:{dctPlayerStocks[player].shaking}");
+                    updateHuds = false;
                 }
             }
-        }
-    }
-
-    public class StockState
-    {
-        public int stockCount;
-        public bool shaking = false;
-
-        public StockState(int stockCount)
-        {
-            this.stockCount = stockCount;
-            this.shaking = false;
         }
     }
 }

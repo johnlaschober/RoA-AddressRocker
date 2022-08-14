@@ -93,10 +93,8 @@ namespace RoA.Screen
                 if (gameState != null)
                 {
                     gameState.Sync(screen);
-                    newState.P1Stock = gameState.dctPlayerStocks[p1MatchState].stockCount.ToString();
-                    newState.P1Shaking = gameState.dctPlayerStocks[p1MatchState].shaking.ToString();
-                    newState.P2Stock = gameState.dctPlayerStocks[p2MatchState].stockCount.ToString();
-                    newState.P2Shaking = gameState.dctPlayerStocks[p2MatchState].shaking.ToString();
+                    newState.P1Stock = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
+                    newState.P2Stock = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
                 }
             }
             else if (screens.pause.IsActive(screen))
