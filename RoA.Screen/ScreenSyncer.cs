@@ -12,12 +12,10 @@ namespace RoA.Screen
     public class ScreenSyncer
     {
         private Screens screens;
-        private Objects objects;
 
         public ScreenSyncer()
         {
             screens = new Screens();
-            objects = new Objects();
         }
 
         private GameState gameState = null;
@@ -40,26 +38,37 @@ namespace RoA.Screen
 
             if (screens.localCSS.IsActive(screen))
             {
-                bool recheckSettings = false;
-                if (prevState.ScreenName == "LOCAL SETTINGS")
+                if (screens.localCSS.isTournamentMode == null || prevState.ScreenName == "LOCAL SETTINGS")
                 {
-                    recheckSettings = true;
+                    screens.localCSS.UpdateSettings(screen);
+                    newState.IsTournamentMode = screens.localCSS.isTournamentMode.ToString();
+                    newState.TourneyBestOf = screens.localCSS.GetTourneyModeBestOf(screen);
                 }
 
                 newState.ScreenName = "LOCAL CSS";
-                newState.P1Character = objects.slot_p1.GetSlotCharacter(screen);
-                newState.P2Character = objects.slot_p2.GetSlotCharacter(screen);
+                newState.P1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
+                newState.P1SlotType = screens.localCSS.slot_p1.GetSlotType(screen);
+                newState.P2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
+                newState.P2SlotType = screens.localCSS.slot_p2.GetSlotType(screen);
 
-                if (newState.P1Character == "UNKNOWN") newState.P1Character = prevState.P1Character;
-                if (newState.P2Character == "UNKNOWN") newState.P2Character = prevState.P2Character;
+                if (newState.P1Character == "UNKNOWN")
+                {
+                    newState.P1Character = prevState.P1Character;
+                    newState.P1SlotType = prevState.P1SlotType;
+                }
+                if (newState.P2Character == "UNKNOWN")
+                {
+                    newState.P2Character = prevState.P2Character;
+                    newState.P2SlotType = prevState.P2SlotType;
+                }
             }
             else if (screens.localSettings.IsActive(screen))
             {
                 newState.ScreenName = "LOCAL SETTINGS";
 
-                newState.TourneyBestOf = objects.settings_tourneyBestOfNumber.GetNumber(screen);
-                newState.Stock = objects.settings_stockNumber.GetNumber(screen);
-                newState.Time = objects.settings_timeNumber.GetNumber(screen);
+                newState.TourneyBestOf = screens.localSettings.tourneyBestOfNumber.GetNumber(screen);
+                newState.Stock = screens.localSettings.stockNumber.GetNumber(screen);
+                newState.Time = screens.localSettings.timeNumber.GetNumber(screen);
 
                 int.TryParse(newState.Stock, out stockSetting);
             }
@@ -71,8 +80,8 @@ namespace RoA.Screen
             {
                 if (prevState.ScreenName == "LOCAL CSS" || prevState.ScreenName == "STAGE SELECT")
                 {
-                    p1MatchState = new PlayerState(1, newState.P1Character);
-                    p2MatchState = new PlayerState(2, newState.P2Character);
+                    p1MatchState = new PlayerState(1, newState.P1Character, newState.P1SlotType);
+                    p2MatchState = new PlayerState(2, newState.P2Character, newState.P2SlotType);
 
                     List<PlayerState> gamePlayers = new List<PlayerState>() { p1MatchState, p2MatchState };
 
@@ -114,26 +123,6 @@ namespace RoA.Screen
             localMatch = new PS_LocalVersusMatch();
             pause = new PS_Pause();
             localSettings = new PS_LocalVersusSettings();
-        }
-    }
-
-    public class Objects
-    {
-        public PO_CSSSlot slot_p1;
-        public PO_CSSSlot slot_p2;
-
-        public PO_SettingsNumber settings_tourneyBestOfNumber;
-        public PO_SettingsNumber settings_stockNumber;
-        public PO_SettingsNumber settings_timeNumber;
-
-        public Objects()
-        {
-            slot_p1 = new PO_CSSSlot(1);
-            slot_p2 = new PO_CSSSlot(2);
-
-            settings_tourneyBestOfNumber = new PO_SettingsNumber(new Point(1144, 242));
-            settings_stockNumber = new PO_SettingsNumber(new Point(1144, 298));
-            settings_timeNumber = new PO_SettingsNumber(new Point(1144, 354));
         }
     }
 }

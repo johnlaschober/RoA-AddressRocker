@@ -35,15 +35,17 @@ namespace RoA.Screen
                 double hudPercent = 100;
                 double colorPercent = 100;
 
+                bool isCPU = player.slotType == "CPU";
+
                 switch (player.playerNum)
                 {
                     case 1:
-                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
-                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1HudColor());
+                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud(isCPU));
+                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1HudColor(isCPU));
                         break;
                     case 2:
-                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
-                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2HudColor());
+                        hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud(isCPU));
+                        colorPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2HudColor(isCPU));
                         break;
                     case 3:
                         break;
@@ -51,12 +53,12 @@ namespace RoA.Screen
                         break;
                 }
 
-                if (hudPercent < 80 && !dctPlayerStocks[player].shaking && colorPercent < 100)
+                if (hudPercent < 75 && !dctPlayerStocks[player].shaking && colorPercent < 100)
                 {
                     dctPlayerStocks[player].stockCount--;
                     dctPlayerStocks[player].shaking = true;
                 }
-                else if (hudPercent >= 100 && dctPlayerStocks[player].shaking)
+                else if (hudPercent >= 100 && dctPlayerStocks[player].shaking && colorPercent >= 100)
                 {
                     dctPlayerStocks[player].shaking = false;
                 }

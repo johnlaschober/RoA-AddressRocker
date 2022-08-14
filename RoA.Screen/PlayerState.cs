@@ -10,11 +10,13 @@ namespace RoA.Screen
     {
         public int playerNum;
         public string character;
+        public string slotType;
 
-        public PlayerState(int playerNum, string character)
+        public PlayerState(int playerNum, string character, string slotType)
         {
             this.playerNum = playerNum;
             this.character = character;
+            this.slotType = slotType;
         }
     }
 }

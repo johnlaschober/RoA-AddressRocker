@@ -116,14 +116,6 @@ namespace RoA.ScreenTest
                 string sCharacters = $"Characters: {string.Format("{0:N2}%", dblCharacters)}" + Environment.NewLine;
                 dctOrdering[sCharacters] = dblCharacters;
 
-                double dblP1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
-                string sP1Hud = $"P1 Hud: {string.Format("{0:N2}%", dblP1Hud)}" + Environment.NewLine;
-                dctOrdering[sP1Hud] = dblP1Hud;
-
-                double dblP2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
-                string sP2Hud = $"P2 Hud: {string.Format("{0:N2}%", dblP2Hud)}" + Environment.NewLine;
-                dctOrdering[sP2Hud] = dblP2Hud;
-
                 double dblPurpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
                 string sPurpleBanner = $"Purple Banner: {string.Format("{0:N2}%", dblPurpleBanner)}" + Environment.NewLine;
                 dctOrdering[sPurpleBanner] = dblPurpleBanner;

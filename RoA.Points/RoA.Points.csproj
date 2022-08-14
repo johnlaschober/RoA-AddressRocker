@@ -47,6 +47,10 @@
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
     <Compile Include="PointCollections\PC_MatchTimerDoubleDigits.cs" />
     <Compile Include="PointCollections\PC_MatchTimerSingleDigits.cs" />
+    <Compile Include="PointCollections\PC_ReadyToFightBar.cs" />
+    <Compile Include="PointCollections\PC_StageSelectMusicButton.cs" />
+    <Compile Include="PointCollections\PC_StocksIcon.cs" />
+    <Compile Include="PointCollections\PC_TourneyModeIcon.cs" />
     <Compile Include="PointCollections\SettingsNumbers\PC_Settings0.cs" />
     <Compile Include="PointCollections\SettingsNumbers\PC_Settings1.cs" />
     <Compile Include="PointCollections\SettingsNumbers\PC_Settings2.cs" />

@@ -84,24 +84,24 @@ namespace RoA.Points.PointCollections
             return localGroup;
         }
 
-        public static PointCollectionsGroup P1Hud() // 1 v 1
+        public static PointCollectionsGroup P1Hud(bool isCPU) // 1 v 1
         {
-            return CreateHudGroup(new Point(500, 984), ColorTranslator.FromHtml("#ED1C24"), Group);
+            return CreateHudGroup(new Point(500, 984), isCPU ? ColorTranslator.FromHtml("#808080") : ColorTranslator.FromHtml("#ED1C24"), Group);
         }
 
-        public static PointCollectionsGroup P1HudColor()
+        public static PointCollectionsGroup P1HudColor(bool isCPU)
         {
-            return CreateHudGroup(new Point(500, 984), ColorTranslator.FromHtml("#ED1C24"), SinglePointGroup);
+            return CreateHudGroup(new Point(500, 984), isCPU ? ColorTranslator.FromHtml("#808080"): ColorTranslator.FromHtml("#ED1C24"), SinglePointGroup);
         }
 
-        public static PointCollectionsGroup P2Hud() // 1 v 1
+        public static PointCollectionsGroup P2Hud(bool isCPU) // 1 v 1
         {
-            return CreateHudGroup(new Point(976, 984), ColorTranslator.FromHtml("#00B7EF"), Group);
+            return CreateHudGroup(new Point(976, 984), isCPU ? ColorTranslator.FromHtml("#808080") : ColorTranslator.FromHtml("#00B7EF"), Group);
         }
 
-        public static PointCollectionsGroup P2HudColor()
+        public static PointCollectionsGroup P2HudColor(bool isCPU)
         {
-            return CreateHudGroup(new Point(976, 984), ColorTranslator.FromHtml("#00B7EF"), SinglePointGroup);
+            return CreateHudGroup(new Point(976, 984), isCPU ? ColorTranslator.FromHtml("#808080"): ColorTranslator.FromHtml("#00B7EF"), SinglePointGroup);
         }
     }
 }

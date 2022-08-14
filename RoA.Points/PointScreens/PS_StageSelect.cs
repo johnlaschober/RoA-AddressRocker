@@ -11,10 +11,9 @@ namespace RoA.Points.PointScreens
             double purpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
             if (purpleBanner < 30) return false;
 
-            double p1Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud());
-            double p2Hud = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud());
+            double musicButton = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectMusicButton.Group);
 
-            if (((p1Hud + p2Hud) / 2) < 90) return false;
+            if (musicButton <= 50) return false;
 
             double stageSelectBigPreview = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectBigPreview.Group);
             double stageSelectHamburger = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectHamburger.Group);
