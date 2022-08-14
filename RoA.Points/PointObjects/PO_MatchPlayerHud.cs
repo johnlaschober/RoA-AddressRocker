@@ -53,32 +53,90 @@ namespace RoA.Points.PointObjects
         private PointCollectionsGroup num8;
         private PointCollectionsGroup num9;
 
-        public PO_MatchPlayerHud(int playerNumber, bool isCPU)
+        private PointCollectionsGroup eliminatedZero;
+
+        private int slotPosition;
+        private int totalSlots;
+
+        public PO_MatchPlayerHud(int playerNumber, bool isCPU, int slotPosition, int totalSlots)
         {
             this.playerNumber = playerNumber;
             this.isCPU = isCPU;
             this.updateStockCount = true;
+            this.slotPosition = slotPosition;
+            this.totalSlots = totalSlots;
 
+            SetupStockNumbers(slotPosition, totalSlots);
+        }
+
+        private void SetupStockNumbers(int slotPosition, int totalSlots)
+        {
             Point leftStartPoint = new Point(0, 0);
             Point rightStartPoint = new Point(0, 0);
             Point startPoint = new Point(0, 0);
 
-            switch (playerNumber)
+            if (totalSlots == 2)
             {
-                case 1:
-                    leftStartPoint = new Point(516, 1032);
-                    rightStartPoint = new Point(540, 1032);
-                    startPoint = new Point(528, 1032);
-                    break;
-                case 2:
-                    leftStartPoint = new Point(992, 1032);
-                    rightStartPoint = new Point(1016, 1032);
-                    startPoint = new Point(1004, 1032);
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
+                switch(slotPosition)
+                {
+                    case 1:
+                        leftStartPoint = new Point(516, 1032);
+                        rightStartPoint = new Point(540, 1032);
+                        startPoint = new Point(528, 1032);
+                        break;
+                    case 2:
+                        leftStartPoint = new Point(992, 1032);
+                        rightStartPoint = new Point(1016, 1032);
+                        startPoint = new Point(1004, 1032);
+                        break;
+                }
+            }
+            if (totalSlots == 3)
+            {
+                switch(slotPosition)
+                {
+                    case 1:
+                        leftStartPoint = new Point(278, 1032);
+                        rightStartPoint = new Point(302, 1032);
+                        startPoint = new Point(290, 1032);
+                        break;
+                    case 2:
+                        leftStartPoint = new Point(754, 1032);
+                        rightStartPoint = new Point(778, 1032);
+                        startPoint = new Point(766, 1032);
+                        break;
+                    case 3:
+                        leftStartPoint = new Point(1230, 1032);
+                        rightStartPoint = new Point(1254, 1032);
+                        startPoint = new Point(1242, 1032);
+                        break;
+                }
+            }
+            if (totalSlots == 4)
+            {
+                switch(slotPosition)
+                {
+                    case 1:
+                        leftStartPoint = new Point(40, 1032);
+                        rightStartPoint = new Point(64, 1032);
+                        startPoint = new Point(52, 1032);
+                        break;
+                    case 2:
+                        leftStartPoint = new Point(516, 1032);
+                        rightStartPoint = new Point(540, 1032);
+                        startPoint = new Point(528, 1032);
+                        break;
+                    case 3:
+                        leftStartPoint = new Point(992, 1032);
+                        rightStartPoint = new Point(1016, 1032);
+                        startPoint = new Point(1004, 1032);
+                        break;
+                    case 4:
+                        leftStartPoint = new Point(1468, 1032);
+                        rightStartPoint = new Point(1492, 1032);
+                        startPoint = new Point(1480, 1032);
+                        break;
+                }
             }
 
             num0Left = PointHelper.GetGroupClone(PC_Settings0.Group);
@@ -114,6 +172,8 @@ namespace RoA.Points.PointObjects
             num8 = PointHelper.GetGroupClone(PC_Settings8.Group);
             num9 = PointHelper.GetGroupClone(PC_Settings9.Group);
 
+            eliminatedZero = PointHelper.GetGroupClone(PC_EliminatedZero.Group);
+
             PointHelper.SlideGroup(leftStartPoint, ref num0Left);
             PointHelper.SlideGroup(leftStartPoint, ref num1Left);
             PointHelper.SlideGroup(leftStartPoint, ref num2Left);
@@ -146,6 +206,8 @@ namespace RoA.Points.PointObjects
             PointHelper.SlideGroup(startPoint, ref num7);
             PointHelper.SlideGroup(startPoint, ref num8);
             PointHelper.SlideGroup(startPoint, ref num9);
+
+            PointHelper.SlideGroup(new Point(startPoint.X - 4, startPoint.Y - 4), ref eliminatedZero);
         }
 
         private string GetStockCountString(Bitmap screen)
@@ -202,8 +264,8 @@ namespace RoA.Points.PointObjects
             }
             else
             {
-                result += matchingLeft.Last().Key;
-                result += matchingRight.Last().Key;
+                if (matchingLeft.Count > 0) result += matchingLeft.Last().Key;
+                if (matchingRight.Count > 0) result += matchingRight.Last().Key;
                 return result;
             }
         }
@@ -222,11 +284,14 @@ namespace RoA.Points.PointObjects
                     wasShaking = false;
                     UpdateStockCount(screen);
                 }
-                else if (isShaking && GAME >= 80 && hudPercent < 60)
+                else if (isShaking && GAME >= 80 && hudPercent < 30)
                 {
                     stockCount = 0;
                 }
             }
+
+            var dblEliminated = ScreenTools.GetMatchingPercentage(screen, eliminatedZero);
+            if (dblEliminated >= 100) stockCount = 0;
         }
 
         private void UpdateStockCount(Bitmap screen)
@@ -247,20 +312,32 @@ namespace RoA.Points.PointObjects
 
         public bool IsShaking(Bitmap screen)
         {
-            switch (playerNumber)
+            Color colorToUse = Color.White;
+
+            if (isCPU)
             {
-                case 1:
-                    hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P1Hud(isCPU));
-                    break;
-                case 2:
-                    hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.P2Hud(isCPU));
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
+                colorToUse = ColorTranslator.FromHtml("#808080");
+            }
+            else
+            {
+                switch (playerNumber)
+                {
+                    case 1:
+                        colorToUse = ColorTranslator.FromHtml("#ED1C24");
+                        break;
+                    case 2:
+                        colorToUse = ColorTranslator.FromHtml("#00B7EF");
+                        break;
+                    case 3:
+                        colorToUse = ColorTranslator.FromHtml("#FFA3B1");
+                        break;
+                    case 4:
+                        colorToUse = ColorTranslator.FromHtml("#A8E61D");
+                        break;
+                }
             }
 
+            hudPercent = ScreenTools.GetMatchingPercentage(screen, PC_PlayerMatchHud.CreatePlayerMatchHud(colorToUse, slotPosition, totalSlots));
             if (hudPercent < 75)
             {
                 wasShaking = true;

@@ -54,53 +54,6 @@ namespace RoA.Points.PointCollections
             }
         };
 
-        private static PointCollectionsGroup SinglePointGroup = new PointCollectionsGroup()
-        {
-            collections = new List<PointCollection>()
-            {
-new PointCollection()
-{
-    color = ColorTranslator.FromHtml("#ED1C24"),
-    points = new List<Point>()
-    {
-        new Point(11, 27),
-new Point(12, 36),
-new Point(13, 17),
-new Point(17, 23),
-new Point(21, 32),
-new Point(25, 87),
-new Point(36, 88),
-new Point(44, 88),
-new Point(52, 32),
-new Point(55, 87),
-new Point(58, 37),
-new Point(61, 22),
-new Point(62, 33),
-new Point(383, 7),
-new Point(397, 74),
-new Point(398, 63),
-new Point(399, 82),
-new Point(400, 67),
-new Point(401, 58),
-new Point(403, 87),
-new Point(414, 52),
-new Point(415, 86),
-new Point(418, 8),
-new Point(425, 54),
-new Point(428, 80),
-new Point(431, 65),
-new Point(434, 14),
-new Point(435, 27),
-new Point(436, 41),
-new Point(436, 51),
-new Point(436, 71),
-new Point(437, 33),
-new Point(439, 58)
-    }
-}
-            }
-        };
-
         private static PointCollectionsGroup CreateHudGroup(Point hudStart, Color newColor, PointCollectionsGroup group)
         {
             PointCollectionsGroup localGroup = PointHelper.GetGroupClone(group);
@@ -116,24 +69,46 @@ new Point(439, 58)
             return localGroup;
         }
 
-        public static PointCollectionsGroup P1Hud(bool isCPU) // 1 v 1
+        public static PointCollectionsGroup CreatePlayerMatchHud(Color hudColor, int slotPosition, int totalSlots)
         {
-            return CreateHudGroup(new Point(500, 984), isCPU ? ColorTranslator.FromHtml("#808080") : ColorTranslator.FromHtml("#ED1C24"), Group);
-        }
+            if (totalSlots == 2)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        return CreateHudGroup(new Point(500, 984), hudColor, Group);
+                    case 2:
+                        return CreateHudGroup(new Point(976, 984), hudColor, Group);
+                }
+            }
+            else if (totalSlots == 3)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        return CreateHudGroup(new Point(262, 984), hudColor, Group);
+                    case 2:
+                        return CreateHudGroup(new Point(738, 984), hudColor, Group);
+                    case 3:
+                        return CreateHudGroup(new Point(1214, 984), hudColor, Group);
+                }
+            }
+            else if (totalSlots == 4)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        return CreateHudGroup(new Point(24, 984), hudColor, Group);
+                    case 2:
+                        return CreateHudGroup(new Point(500, 984), hudColor, Group);
+                    case 3:
+                        return CreateHudGroup(new Point(976, 984), hudColor, Group);
+                    case 4:
+                        return CreateHudGroup(new Point(1452, 984), hudColor, Group);
+                }
+            }
 
-        public static PointCollectionsGroup P1HudColor(bool isCPU)
-        {
-            return CreateHudGroup(new Point(500, 984), isCPU ? ColorTranslator.FromHtml("#808080"): ColorTranslator.FromHtml("#ED1C24"), SinglePointGroup);
-        }
-
-        public static PointCollectionsGroup P2Hud(bool isCPU) // 1 v 1
-        {
-            return CreateHudGroup(new Point(976, 984), isCPU ? ColorTranslator.FromHtml("#808080") : ColorTranslator.FromHtml("#00B7EF"), Group);
-        }
-
-        public static PointCollectionsGroup P2HudColor(bool isCPU)
-        {
-            return CreateHudGroup(new Point(976, 984), isCPU ? ColorTranslator.FromHtml("#808080"): ColorTranslator.FromHtml("#00B7EF"), SinglePointGroup);
+            return null;
         }
     }
 }

@@ -14,6 +14,10 @@ namespace RoA.Screen
         public string P1SlotType = "";
         public string P2Character = "";
         public string P2SlotType = "";
+        public string P3Character = "";
+        public string P3SlotType = "";
+        public string P4Character = "";
+        public string P4SlotType = "";
 
         public string TourneyBestOf = "";
         public string Stock = "";
@@ -23,6 +27,10 @@ namespace RoA.Screen
         public string P1Shaking = "";
         public string P2Stock = "";
         public string P2Shaking = "";
+        public string P3Stock = "";
+        public string P3Shaking = "";
+        public string P4Stock = "";
+        public string P4Shaking = "";
 
         public string IsTournamentMode = "";
 
@@ -35,6 +43,10 @@ namespace RoA.Screen
                 P1SlotType = this.P1SlotType,
                 P2Character = this.P2Character,
                 P2SlotType = this.P2SlotType,
+                P3Character = this.P3Character,
+                P3SlotType = this.P3SlotType,
+                P4Character = this.P4Character,
+                P4SlotType = this.P4SlotType,
                 TourneyBestOf = this.TourneyBestOf,
                 Stock = this.Stock,
                 Time = this.Time,
@@ -42,6 +54,10 @@ namespace RoA.Screen
                 P1Shaking = this.P1Shaking,
                 P2Stock = this.P2Stock,
                 P2Shaking = this.P2Shaking,
+                P3Stock = this.P3Stock,
+                P3Shaking = this.P3Shaking,
+                P4Stock = this.P4Stock,
+                P4Shaking = this.P4Shaking,
                 IsTournamentMode = this.IsTournamentMode
             };
 

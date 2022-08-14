@@ -27,9 +27,11 @@ namespace RoA.Screen
 
             dctPlayerHuds = new Dictionary<PlayerState, PO_MatchPlayerHud>();
 
+            int slotPosition = 1;
             foreach (var player in this.players)
             {
-                dctPlayerHuds[player] = new PO_MatchPlayerHud(player.playerNum, player.slotType == "CPU");
+                dctPlayerHuds[player] = new PO_MatchPlayerHud(player.playerNum, player.slotType == "CPU", slotPosition, this.players.Count);
+                slotPosition++;
             }
         }
 
@@ -42,11 +44,6 @@ namespace RoA.Screen
                 foreach (var player in players)
                 {
                     dctPlayerHuds[player].UpdateInfo(screen, dblGAME);
-
-                    if (player.playerNum == 1)
-                    {
-                        Console.WriteLine($"{DateTime.UtcNow}: {player.playerNum}: stocks:{dctPlayerHuds[player].GetStockCount()}");
-                    }
                 }
 
                 int playersWithNoStocks = 0;

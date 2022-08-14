@@ -49,6 +49,16 @@ namespace RoA.Points.PointObjects
                 slotStart = new Point(504, 632);
                 slotActiveColor = ColorTranslator.FromHtml("#00B7EF");
             }
+            if (playerNumber == 3)
+            {
+                slotStart = new Point(980, 632);
+                slotActiveColor = ColorTranslator.FromHtml("#FFA3B1");
+            }
+            if (playerNumber == 4)
+            {
+                slotStart = new Point(1456, 632);
+                slotActiveColor = ColorTranslator.FromHtml("#A8E61D");
+            }
 
             slotTypeGroup = PointHelper.GetGroupClone(PC_Slot.Group);
             PointHelper.SlideGroup(slotStart, ref slotTypeGroup);

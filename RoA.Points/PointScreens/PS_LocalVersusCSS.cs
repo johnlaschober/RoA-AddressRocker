@@ -9,6 +9,8 @@ namespace RoA.Points.PointScreens
     {
         public PO_CSSSlot slot_p1;
         public PO_CSSSlot slot_p2;
+        public PO_CSSSlot slot_p3;
+        public PO_CSSSlot slot_p4;
 
         public bool? isTournamentMode = null;
         private PO_SettingsNumber numTourneyModeBestOf;
@@ -26,6 +28,8 @@ namespace RoA.Points.PointScreens
         {
             slot_p1 = new PO_CSSSlot(1);
             slot_p2 = new PO_CSSSlot(2);
+            slot_p3 = new PO_CSSSlot(3);
+            slot_p4 = new PO_CSSSlot(4);
             numTourneyModeBestOf = new PO_SettingsNumber(new Point(890, 48), false);
 
             numStocks_NoTourney = new PO_SettingsNumber(new Point(890, 48), true);
@@ -50,6 +54,13 @@ namespace RoA.Points.PointScreens
             double musicButton = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectMusicButton.Group);
 
             return musicButton < 50;
+        }
+
+        public bool ShouldUpdateCharacters(Bitmap screen)
+        {
+            double characters = ScreenTools.GetMatchingPercentage(screen, PC_CSSCharacterNames.Group);
+
+            return characters > 70;
         }
 
         public void UpdateSettings(Bitmap screen)

@@ -21,6 +21,8 @@ namespace RoA.Screen
         private GameState gameState = null;
         PlayerState p1MatchState;
         PlayerState p2MatchState;
+        PlayerState p3MatchState;
+        PlayerState p4MatchState;
         int stockSetting = 99;
 
         public ScreenState Sync(Bitmap screen, ScreenState prevState)
@@ -38,7 +40,7 @@ namespace RoA.Screen
 
             if (screens.localCSS.IsActive(screen))
             {
-                if (screens.localCSS.isTournamentMode == null || prevState.ScreenName == "LOCAL SETTINGS")
+                if (screens.localCSS.isTournamentMode == null || newState.Stock == "" || prevState.ScreenName == "LOCAL SETTINGS")
                 {
                     screens.localCSS.UpdateSettings(screen);
                     newState.IsTournamentMode = screens.localCSS.isTournamentMode.ToString();
@@ -48,20 +50,17 @@ namespace RoA.Screen
                 }
 
                 newState.ScreenName = "LOCAL CSS";
-                newState.P1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
-                newState.P1SlotType = screens.localCSS.slot_p1.GetSlotType(screen);
-                newState.P2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
-                newState.P2SlotType = screens.localCSS.slot_p2.GetSlotType(screen);
 
-                if (newState.P1Character == "UNKNOWN")
+                if (screens.localCSS.ShouldUpdateCharacters(screen))
                 {
-                    newState.P1Character = prevState.P1Character;
-                    newState.P1SlotType = prevState.P1SlotType;
-                }
-                if (newState.P2Character == "UNKNOWN")
-                {
-                    newState.P2Character = prevState.P2Character;
-                    newState.P2SlotType = prevState.P2SlotType;
+                    newState.P1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
+                    newState.P1SlotType = screens.localCSS.slot_p1.GetSlotType(screen);
+                    newState.P2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
+                    newState.P2SlotType = screens.localCSS.slot_p2.GetSlotType(screen);
+                    newState.P3Character = screens.localCSS.slot_p3.GetSlotCharacter(screen);
+                    newState.P3SlotType = screens.localCSS.slot_p3.GetSlotType(screen);
+                    newState.P4Character = screens.localCSS.slot_p4.GetSlotCharacter(screen);
+                    newState.P4SlotType = screens.localCSS.slot_p4.GetSlotType(screen);
                 }
             }
             else if (screens.localSettings.IsActive(screen))
@@ -84,8 +83,15 @@ namespace RoA.Screen
                 {
                     p1MatchState = new PlayerState(1, newState.P1Character, newState.P1SlotType);
                     p2MatchState = new PlayerState(2, newState.P2Character, newState.P2SlotType);
+                    p3MatchState = new PlayerState(3, newState.P3Character, newState.P3SlotType);
+                    p4MatchState = new PlayerState(4, newState.P4Character, newState.P4SlotType);
 
-                    List<PlayerState> gamePlayers = new List<PlayerState>() { p1MatchState, p2MatchState };
+                    List<PlayerState> gamePlayers = new List<PlayerState>();
+
+                    if (p1MatchState.slotType != "OFF" && p1MatchState.slotType != "") gamePlayers.Add(p1MatchState);
+                    if (p2MatchState.slotType != "OFF" && p2MatchState.slotType != "") gamePlayers.Add(p2MatchState);
+                    if (p3MatchState.slotType != "OFF" && p3MatchState.slotType != "") gamePlayers.Add(p3MatchState);
+                    if (p4MatchState.slotType != "OFF" && p4MatchState.slotType != "") gamePlayers.Add(p4MatchState);
 
                     gameState = new GameState(stockSetting, gamePlayers);
                 }
@@ -95,8 +101,10 @@ namespace RoA.Screen
                 if (gameState != null)
                 {
                     gameState.Sync(screen);
-                    newState.P1Stock = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
-                    newState.P2Stock = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p1MatchState)) newState.P1Stock = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p2MatchState)) newState.P2Stock = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p3MatchState)) newState.P3Stock = gameState.dctPlayerHuds[p3MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p4MatchState)) newState.P4Stock = gameState.dctPlayerHuds[p4MatchState].GetStockCount().ToString();
                 }
             }
             else if (screens.pause.IsActive(screen))
