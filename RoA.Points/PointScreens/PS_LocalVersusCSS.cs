@@ -13,11 +13,29 @@ namespace RoA.Points.PointScreens
         public bool? isTournamentMode = null;
         private PO_SettingsNumber numTourneyModeBestOf;
 
+        private PO_SettingsNumber numStocks_NoTourney;
+        private PO_SettingsNumber numStocks_Tourney;
+
+        private PO_SettingsNumber numTime_DoubleDigitStocks_NoTourney;
+        private PO_SettingsNumber numTime_DoubleDigitStocks_Tourney;
+
+        private PO_SettingsNumber numTime_SingleDigitStocks_NoTourney;
+        private PO_SettingsNumber numTime_SingleDigitStocks_Tourney;
+
         public PS_LocalVersusCSS()
         {
             slot_p1 = new PO_CSSSlot(1);
             slot_p2 = new PO_CSSSlot(2);
             numTourneyModeBestOf = new PO_SettingsNumber(new Point(890, 48), false);
+
+            numStocks_NoTourney = new PO_SettingsNumber(new Point(890, 48), true);
+            numStocks_Tourney = new PO_SettingsNumber(new Point(986, 48), true);
+
+            numTime_SingleDigitStocks_NoTourney = new PO_SettingsNumber(new Point(986, 48), true);
+            numTime_SingleDigitStocks_Tourney = new PO_SettingsNumber(new Point(1082, 48), true);
+
+            numTime_DoubleDigitStocks_NoTourney = new PO_SettingsNumber(new Point(1006, 48), true);
+            numTime_DoubleDigitStocks_Tourney = new PO_SettingsNumber(new Point(1102, 48), true);
         }
 
         public bool IsActive(Bitmap screen)
@@ -48,6 +66,44 @@ namespace RoA.Points.PointScreens
             else
             {
                 return "";
+            }
+        }
+
+        public string GetStockCount(Bitmap screen)
+        {
+            if (isTournamentMode != null && (bool)isTournamentMode)
+            {
+                return numStocks_Tourney.GetNumber(screen);
+            }
+            else
+            {
+                return numStocks_NoTourney.GetNumber(screen);
+            }
+        }
+
+        public string GetTime(Bitmap screen, string stockCount)
+        {
+            if (isTournamentMode != null && (bool)isTournamentMode)
+            {
+                if (stockCount.Length > 1)
+                {
+                    return numTime_DoubleDigitStocks_Tourney.GetNumber(screen);
+                }
+                else
+                {
+                    return numTime_SingleDigitStocks_Tourney.GetNumber(screen);
+                }
+            }
+            else
+            {
+                if (stockCount.Length > 1)
+                {
+                    return numTime_DoubleDigitStocks_NoTourney.GetNumber(screen);
+                }
+                else
+                {
+                    return numTime_SingleDigitStocks_NoTourney.GetNumber(screen);
+                }
             }
         }
     }

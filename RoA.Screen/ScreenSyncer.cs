@@ -43,6 +43,8 @@ namespace RoA.Screen
                     screens.localCSS.UpdateSettings(screen);
                     newState.IsTournamentMode = screens.localCSS.isTournamentMode.ToString();
                     newState.TourneyBestOf = screens.localCSS.GetTourneyModeBestOf(screen);
+                    newState.Stock = screens.localCSS.GetStockCount(screen);
+                    newState.Time = screens.localCSS.GetTime(screen, newState.Stock);
                 }
 
                 newState.ScreenName = "LOCAL CSS";
