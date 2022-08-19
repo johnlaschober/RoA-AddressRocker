@@ -24,13 +24,9 @@ namespace RoA.Screen
         public string Time = "";
 
         public string P1Stock = "";
-        public string P1Shaking = "";
         public string P2Stock = "";
-        public string P2Shaking = "";
         public string P3Stock = "";
-        public string P3Shaking = "";
         public string P4Stock = "";
-        public string P4Shaking = "";
 
         public string IsTournamentMode = "";
 
@@ -51,13 +47,9 @@ namespace RoA.Screen
                 Stock = this.Stock,
                 Time = this.Time,
                 P1Stock = this.P1Stock,
-                P1Shaking = this.P1Shaking,
                 P2Stock = this.P2Stock,
-                P2Shaking = this.P2Shaking,
                 P3Stock = this.P3Stock,
-                P3Shaking = this.P3Shaking,
                 P4Stock = this.P4Stock,
-                P4Shaking = this.P4Shaking,
                 IsTournamentMode = this.IsTournamentMode
             };
 

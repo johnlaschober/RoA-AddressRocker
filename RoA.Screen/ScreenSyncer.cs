@@ -106,6 +106,10 @@ namespace RoA.Screen
                     if (gameState.dctPlayerHuds.ContainsKey(p3MatchState)) newState.P3Stock = gameState.dctPlayerHuds[p3MatchState].GetStockCount().ToString();
                     if (gameState.dctPlayerHuds.ContainsKey(p4MatchState)) newState.P4Stock = gameState.dctPlayerHuds[p4MatchState].GetStockCount().ToString();
                 }
+                else if (gameState == null)
+                {
+                    // Need to call local match to find players and set up a new game state
+                }
             }
             else if (screens.pause.IsActive(screen))
             {
