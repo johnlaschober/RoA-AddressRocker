@@ -40,10 +40,11 @@ namespace RoA.Screen
             if (updateHuds)
             {
                 var dblGAME = ScreenTools.GetMatchingPercentage(screen, PC_GAME.Group);
+                var dblSet = ScreenTools.GetMatchingPercentage(screen, PC_GameAndSet.Group);
 
                 foreach (var player in players)
                 {
-                    dctPlayerHuds[player].UpdateInfo(screen, dblGAME);
+                    dctPlayerHuds[player].UpdateInfo(screen, dblGAME, dblSet);
                 }
 
                 int playersWithNoStocks = 0;

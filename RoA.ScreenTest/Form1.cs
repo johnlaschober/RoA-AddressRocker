@@ -78,7 +78,7 @@ namespace RoA.ScreenTest
             {
                 Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
 
-                var newScreenState = syncer.Sync(screen, prevScreenState);
+                var newScreenState = syncer.Sync(screen).Item2;
 
                 bgwSyncer.ReportProgress(0, JsonConvert.SerializeObject(newScreenState, Formatting.Indented));
 

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoA.ScreenTest", "RoA.Scree
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoA.Points", "RoA.Points\RoA.Points.csproj", "{F7AA9F49-48CF-4821-8FB3-DBEB9C8A3AD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoA.ScreenUI", "RoA.ScreenUI\RoA.ScreenUI.csproj", "{A927DE95-ABFA-4ECA-B117-576704E6B98C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,14 @@ Global
 		{F7AA9F49-48CF-4821-8FB3-DBEB9C8A3AD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7AA9F49-48CF-4821-8FB3-DBEB9C8A3AD0}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7AA9F49-48CF-4821-8FB3-DBEB9C8A3AD0}.Release|x86.Build.0 = Release|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A927DE95-ABFA-4ECA-B117-576704E6B98C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

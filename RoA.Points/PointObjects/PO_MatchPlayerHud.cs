@@ -270,7 +270,7 @@ namespace RoA.Points.PointObjects
             }
         }
 
-        public void UpdateInfo(Bitmap screen, double GAME)
+        public void UpdateInfo(Bitmap screen, double GAME, double SET)
         {
             if (stockCount == null)
             {
@@ -284,7 +284,7 @@ namespace RoA.Points.PointObjects
                     wasShaking = false;
                     UpdateStockCount(screen);
                 }
-                else if (isShaking && GAME >= 80 && hudPercent < 30)
+                else if (isShaking && (GAME >= 80 || SET >= 80) && hudPercent < 30)
                 {
                     stockCount = 0;
                 }

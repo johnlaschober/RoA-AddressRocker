@@ -22,6 +22,7 @@ namespace RoA.Screen
         public string TourneyBestOf = "";
         public string Stock = "";
         public string Time = "";
+        public bool InMatch = false;
 
         public string P1Stock = "";
         public string P2Stock = "";
@@ -50,7 +51,8 @@ namespace RoA.Screen
                 P2Stock = this.P2Stock,
                 P3Stock = this.P3Stock,
                 P4Stock = this.P4Stock,
-                IsTournamentMode = this.IsTournamentMode
+                IsTournamentMode = this.IsTournamentMode,
+                InMatch = this.InMatch
             };
 
             return copiedState;

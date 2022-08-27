@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RoA.Points.PointScreens;
 using RoA.Points.PointObjects;
+using Newtonsoft.Json;
 
 namespace RoA.Screen
 {
@@ -13,30 +14,24 @@ namespace RoA.Screen
     {
         private Screens screens;
 
+        public ScreenState prevState;
+        public GameState gameState = null;
+
         public ScreenSyncer()
         {
             screens = new Screens();
         }
 
-        private GameState gameState = null;
         PlayerState p1MatchState;
         PlayerState p2MatchState;
         PlayerState p3MatchState;
         PlayerState p4MatchState;
         int stockSetting = 99;
 
-        public ScreenState Sync(Bitmap screen, ScreenState prevState)
+        public (bool, ScreenState) Sync(Bitmap screen)
         {
             ScreenState newState;
-
-            if (prevState != null)
-            {
-                newState = prevState.GetCopy();
-            }
-            else
-            {
-                newState = new ScreenState();
-            }
+            newState = prevState == null ? new ScreenState() : prevState.GetCopy();
 
             if (screens.localCSS.IsActive(screen))
             {
@@ -50,17 +45,46 @@ namespace RoA.Screen
                 }
 
                 newState.ScreenName = "LOCAL CSS";
+                newState.InMatch = false;
 
                 if (screens.localCSS.ShouldUpdateCharacters(screen))
                 {
-                    newState.P1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
                     newState.P1SlotType = screens.localCSS.slot_p1.GetSlotType(screen);
-                    newState.P2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
                     newState.P2SlotType = screens.localCSS.slot_p2.GetSlotType(screen);
-                    newState.P3Character = screens.localCSS.slot_p3.GetSlotCharacter(screen);
                     newState.P3SlotType = screens.localCSS.slot_p3.GetSlotType(screen);
-                    newState.P4Character = screens.localCSS.slot_p4.GetSlotCharacter(screen);
                     newState.P4SlotType = screens.localCSS.slot_p4.GetSlotType(screen);
+
+                    if (newState.P1SlotType == "OFF") {
+                        newState.P1Character = "";
+                    }
+                    else {
+                        string p1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
+                        if (p1Character != "UNKNOWN") newState.P1Character = p1Character;
+                    }
+
+                    if (newState.P2SlotType == "OFF"){
+                        newState.P2Character = "";
+                    }
+                    else{
+                        string p2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
+                        if (p2Character != "UNKNOWN") newState.P2Character = p2Character;
+                    }
+
+                    if (newState.P3SlotType == "OFF"){
+                        newState.P3Character = "";
+                    }
+                    else{
+                        string p3Character = screens.localCSS.slot_p3.GetSlotCharacter(screen);
+                        if (p3Character != "UNKNOWN") newState.P3Character = p3Character;
+                    }
+
+                    if (newState.P4SlotType == "OFF"){
+                        newState.P4Character = "";
+                    }
+                    else{
+                        string p4Character = screens.localCSS.slot_p4.GetSlotCharacter(screen);
+                        if (p4Character != "UNKNOWN") newState.P4Character = p4Character;
+                    }
                 }
             }
             else if (screens.localSettings.IsActive(screen))
@@ -70,12 +94,15 @@ namespace RoA.Screen
                 newState.TourneyBestOf = screens.localSettings.tourneyBestOfNumber.GetNumber(screen);
                 newState.Stock = screens.localSettings.stockNumber.GetNumber(screen);
                 newState.Time = screens.localSettings.timeNumber.GetNumber(screen);
+                
+                newState.InMatch = false;
 
                 int.TryParse(newState.Stock, out stockSetting);
             }
             else if (screens.stageSelect.IsActive(screen))
             {
                 newState.ScreenName = "STAGE SELECT";
+                newState.InMatch = false;
             }
             else if (screens.localMatch.IsActive(screen))
             {
@@ -93,10 +120,16 @@ namespace RoA.Screen
                     if (p3MatchState.slotType != "OFF" && p3MatchState.slotType != "") gamePlayers.Add(p3MatchState);
                     if (p4MatchState.slotType != "OFF" && p4MatchState.slotType != "") gamePlayers.Add(p4MatchState);
 
+                    newState.P1Stock = "";
+                    newState.P2Stock = "";
+                    newState.P3Stock = "";
+                    newState.P4Stock = "";
+
                     gameState = new GameState(stockSetting, gamePlayers);
                 }
 
                 newState.ScreenName = "LOCAL MATCH";
+                newState.InMatch = true;
 
                 if (gameState != null)
                 {
@@ -114,9 +147,21 @@ namespace RoA.Screen
             else if (screens.pause.IsActive(screen))
             {
                 newState.ScreenName = "PAUSE";
+                newState.InMatch = true;
             }
 
-            return newState;
+            var returnTuple = (ChangesOccurred(prevState, newState), newState);
+            prevState = newState;
+
+            return returnTuple;
+        }
+
+        private bool ChangesOccurred(ScreenState prev, ScreenState current)
+        {
+            string sPrev = JsonConvert.SerializeObject(prev);
+            string sCurrent = JsonConvert.SerializeObject(current);
+
+            return sPrev != sCurrent;
         }
     }
 

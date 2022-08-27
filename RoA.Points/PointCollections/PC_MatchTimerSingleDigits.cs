@@ -201,5 +201,16 @@ new Point(945, 79)
 }
             }
         };
+
+        public static PointCollectionsGroup PauseGroup 
+        { 
+            get
+            {
+                PointCollectionsGroup local = PointHelper.GetGroupClone(Group);
+                local.collections[0].color = ColorTranslator.FromHtml("#000000");
+                local.collections[1].color = ColorTranslator.FromHtml("#CCCCCC");
+                return local;
+            }
+        }
     }
 }

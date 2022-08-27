@@ -9,8 +9,15 @@ namespace RoA.Points.PointScreens
         public bool IsActive(Bitmap screen)
         {
             double pause = ScreenTools.GetMatchingPercentage(screen, PC_PauseMenu.Group);
+            if (pause > 80) return true;
 
-            return pause > 80;
+            double dblTimer1 = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerSingleDigits.PauseGroup);
+            if (dblTimer1 >= 90) return true;
+
+            double dblTimer2 = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerDoubleDigits.PauseGroup);
+            if (dblTimer2 >= 90) return true;
+
+            return false;
         }
     }
 }
