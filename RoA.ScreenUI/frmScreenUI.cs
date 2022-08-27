@@ -71,6 +71,11 @@ namespace RoA.ScreenUI
             lblP3Stocks.Text = s.P3Stock;
             lblP4Stocks.Text = s.P4Stock;
 
+            lblP1Games.Text = s.P1GameCount;
+            lblP2Games.Text = s.P2GameCount;
+            lblP3Games.Text = s.P3GameCount;
+            lblP4Games.Text = s.P4GameCount;
+
             lblBestOf.Text = s.TourneyBestOf;
             lblStocks.Text = s.Stock;
             lblTime.Text = s.Time;

@@ -11,12 +11,13 @@ namespace RoA.Screen
         // temp shit
         public string ScreenName = "";
         public string P1Character = "";
-        public string P1SlotType = "";
         public string P2Character = "";
-        public string P2SlotType = "";
         public string P3Character = "";
-        public string P3SlotType = "";
         public string P4Character = "";
+
+        public string P1SlotType = "";
+        public string P2SlotType = "";
+        public string P3SlotType = "";
         public string P4SlotType = "";
 
         public string TourneyBestOf = "";
@@ -28,6 +29,11 @@ namespace RoA.Screen
         public string P2Stock = "";
         public string P3Stock = "";
         public string P4Stock = "";
+
+        public string P1GameCount = "";
+        public string P2GameCount = "";
+        public string P3GameCount = "";
+        public string P4GameCount = "";
 
         public string IsTournamentMode = "";
 
@@ -52,7 +58,11 @@ namespace RoA.Screen
                 P3Stock = this.P3Stock,
                 P4Stock = this.P4Stock,
                 IsTournamentMode = this.IsTournamentMode,
-                InMatch = this.InMatch
+                InMatch = this.InMatch,
+                P1GameCount = this.P1GameCount,
+                P2GameCount = this.P2GameCount,
+                P3GameCount = this.P3GameCount,
+                P4GameCount = this.P4GameCount
             };
 
             return copiedState;

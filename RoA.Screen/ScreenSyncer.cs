@@ -16,6 +16,7 @@ namespace RoA.Screen
 
         public ScreenState prevState;
         public GameState gameState = null;
+        public SetState setState = null;
 
         public ScreenSyncer()
         {
@@ -42,6 +43,69 @@ namespace RoA.Screen
                     newState.TourneyBestOf = screens.localCSS.GetTourneyModeBestOf(screen);
                     newState.Stock = screens.localCSS.GetStockCount(screen);
                     newState.Time = screens.localCSS.GetTime(screen, newState.Stock);
+
+                    if (screens.localCSS.isTournamentMode != null &&
+                        (bool)screens.localCSS.isTournamentMode == true && 
+                        setState == null)
+                    {
+                        setState = new SetState();
+                    }
+                    else if (screens.localCSS.isTournamentMode != null &&
+                        (bool)screens.localCSS.isTournamentMode == false)
+                    {
+                        setState = null;
+                    }
+                }
+
+                bool resetSet = false;
+                if (setState != null)
+                {
+                    switch (newState.TourneyBestOf)
+                    {
+                        case "1":
+                            if (setState.GetMaxWin() >= 1)
+                            {
+                                setState.Reset();
+                                resetSet = true;
+                            }
+                            break;
+                        case "3":
+                            if (setState.GetMaxWin() >= 2)
+                            {
+                                setState.Reset();
+                                resetSet = true;
+                            }
+                            break;
+                        case "5":
+                            if (setState.GetMaxWin() >= 3)
+                            {
+                                setState.Reset();
+                                resetSet = true;
+                            }
+                            break;
+                        case "7":
+                            if (setState.GetMaxWin() >= 4)
+                            {
+                                setState.Reset();
+                                resetSet = true;
+                            }
+                            break;
+                        case "9":
+                            if (setState.GetMaxWin() >= 5)
+                            {
+                                setState.Reset();
+                                resetSet = true;
+                            }
+                            break;
+                    }
+                }
+
+                if (resetSet)
+                {
+                    newState.P1GameCount = "0";
+                    newState.P2GameCount = "0";
+                    newState.P3GameCount = "0";
+                    newState.P4GameCount = "0";
                 }
 
                 newState.ScreenName = "LOCAL CSS";
@@ -133,11 +197,26 @@ namespace RoA.Screen
 
                 if (gameState != null)
                 {
-                    gameState.Sync(screen);
+                    gameState.Sync(screen, setState);
                     if (gameState.dctPlayerHuds.ContainsKey(p1MatchState)) newState.P1Stock = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
                     if (gameState.dctPlayerHuds.ContainsKey(p2MatchState)) newState.P2Stock = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
                     if (gameState.dctPlayerHuds.ContainsKey(p3MatchState)) newState.P3Stock = gameState.dctPlayerHuds[p3MatchState].GetStockCount().ToString();
                     if (gameState.dctPlayerHuds.ContainsKey(p4MatchState)) newState.P4Stock = gameState.dctPlayerHuds[p4MatchState].GetStockCount().ToString();
+
+                    if (setState != null)
+                    {
+                        newState.P1GameCount = setState.P1GameCount.ToString();
+                        newState.P2GameCount = setState.P2GameCount.ToString();
+                        newState.P3GameCount = setState.P3GameCount.ToString();
+                        newState.P4GameCount = setState.P4GameCount.ToString();
+                    }
+                    else
+                    {
+                        newState.P1GameCount = "";
+                        newState.P2GameCount = "";
+                        newState.P3GameCount = "";
+                        newState.P4GameCount = "";
+                    }
                 }
                 else if (gameState == null)
                 {

@@ -35,7 +35,7 @@ namespace RoA.Screen
             }
         }
 
-        public void Sync(Bitmap screen)
+        public void Sync(Bitmap screen, SetState setState = null)
         {
             if (updateHuds)
             {
@@ -48,16 +48,40 @@ namespace RoA.Screen
                 }
 
                 int playersWithNoStocks = 0;
+                int winnerPlayerNum = -1;
                 foreach (var player in players)
                 {
                     if (dctPlayerHuds[player].GetStockCount() <= 0)
                     {
                         playersWithNoStocks++;
                     }
+                    else
+                    {
+                        winnerPlayerNum = player.playerNum;
+                    }
                 }
                 if (playersWithNoStocks >= players.Count - 1)
                 {
                     updateHuds = false;
+
+                    if (setState != null)
+                    {
+                        switch (winnerPlayerNum)
+                        {
+                            case 1:
+                                setState.P1GameCount++;
+                                break;
+                            case 2:
+                                setState.P2GameCount++;
+                                break;
+                            case 3:
+                                setState.P3GameCount++;
+                                break;
+                            case 4:
+                                setState.P4GameCount++;
+                                break;
+                        }
+                    }
                 }
             }
         }
