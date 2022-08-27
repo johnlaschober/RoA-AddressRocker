@@ -46,6 +46,7 @@
     <Compile Include="PointCollectionsGroup.cs" />
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
     <Compile Include="PointCollections\PC_EliminatedZero.cs" />
+    <Compile Include="PointCollections\PC_FallbackTokens.cs" />
     <Compile Include="PointCollections\PC_GAME.cs" />
     <Compile Include="PointCollections\PC_GameAndSet.cs" />
     <Compile Include="PointCollections\PC_MatchTimerDoubleDigits.cs" />

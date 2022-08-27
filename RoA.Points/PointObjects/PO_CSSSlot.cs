@@ -166,6 +166,94 @@ namespace RoA.Points.PointObjects
             }
             else
             {
+                switch (playerNumber)
+                {
+                    case 1:
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.AbsaP1) >= 100) return "ABSA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ClairenP1) >= 100) return "CLAIREN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EllianaP1) >= 100) return "ELLIANA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EtalusP1) >= 100) return "ETALUS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ForsburnP1) >= 100) return "FORSBURN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.HodanP1) >= 100) return "HODAN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.KraggP1) >= 100) return "KRAGG";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MaypulP1) >= 100) return "MAYPUL";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MolloP1) >= 100) return "MOLLO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OlympiaP1) >= 100) return "OLYMPIA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OrcaneP1) >= 100) return "ORCANE";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OriP1) >= 100) return "ORI AND SEIN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.PommeP1) >= 100) return "POMME";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RandomP1) >= 100) return "RANDOM";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RannoP1) >= 100) return "RANNO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ShovelKnightP1) >= 100) return "SHOVEL KNIGHT";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.SylvanosP1) >= 100) return "SYLVANOS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.WrastorP1) >= 100) return "WRASTOR";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ZetterburnP1) >= 100) return "ZETTERBURN";
+                        return "UNKNOWN";
+                    case 2:
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.AbsaP2) >= 100) return "ABSA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ClairenP2) >= 100) return "CLAIREN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EllianaP2) >= 100) return "ELLIANA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EtalusP2) >= 100) return "ETALUS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ForsburnP2) >= 100) return "FORSBURN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.HodanP2) >= 100) return "HODAN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.KraggP2) >= 100) return "KRAGG";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MaypulP2) >= 100) return "MAYPUL";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MolloP2) >= 100) return "MOLLO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OlympiaP2) >= 100) return "OLYMPIA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OrcaneP2) >= 100) return "ORCANE";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OriP2) >= 100) return "ORI AND SEIN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.PommeP2) >= 100) return "POMME";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RandomP2) >= 100) return "RANDOM";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RannoP2) >= 100) return "RANNO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ShovelKnightP2) >= 100) return "SHOVEL KNIGHT";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.SylvanosP2) >= 100) return "SYLVANOS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.WrastorP2) >= 100) return "WRASTOR";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ZetterburnP2) >= 100) return "ZETTERBURN";
+                        return "UNKNOWN";
+                    case 3:
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.AbsaP3) >= 100) return "ABSA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ClairenP3) >= 100) return "CLAIREN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EllianaP3) >= 100) return "ELLIANA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EtalusP3) >= 100) return "ETALUS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ForsburnP3) >= 100) return "FORSBURN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.HodanP3) >= 100) return "HODAN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.KraggP3) >= 100) return "KRAGG";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MaypulP3) >= 100) return "MAYPUL";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MolloP3) >= 100) return "MOLLO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OlympiaP3) >= 100) return "OLYMPIA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OrcaneP3) >= 100) return "ORCANE";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OriP3) >= 100) return "ORI AND SEIN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.PommeP3) >= 100) return "POMME";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RandomP3) >= 100) return "RANDOM";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RannoP3) >= 100) return "RANNO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ShovelKnightP3) >= 100) return "SHOVEL KNIGHT";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.SylvanosP3) >= 100) return "SYLVANOS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.WrastorP3) >= 100) return "WRASTOR";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ZetterburnP3) >= 100) return "ZETTERBURN";
+                        return "UNKNOWN";
+                    case 4:
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.AbsaP4) >= 100) return "ABSA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ClairenP4) >= 100) return "CLAIREN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EllianaP4) >= 100) return "ELLIANA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.EtalusP4) >= 100) return "ETALUS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ForsburnP4) >= 100) return "FORSBURN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.HodanP4) >= 100) return "HODAN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.KraggP4) >= 100) return "KRAGG";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MaypulP4) >= 100) return "MAYPUL";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.MolloP4) >= 100) return "MOLLO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OlympiaP4) >= 100) return "OLYMPIA";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OrcaneP4) >= 100) return "ORCANE";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.OriP4) >= 100) return "ORI AND SEIN";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.PommeP4) >= 100) return "POMME";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RandomP4) >= 100) return "RANDOM";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.RannoP4) >= 100) return "RANNO";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ShovelKnightP4) >= 100) return "SHOVEL KNIGHT";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.SylvanosP4) >= 100) return "SYLVANOS";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.WrastorP4) >= 100) return "WRASTOR";
+                        if (ScreenTools.GetMatchingPercentage(screen, PC_FallbackTokens.ZetterburnP4) >= 100) return "ZETTERBURN";
+                        return "UNKNOWN";
+                }
+
                 return "UNKNOWN";
             }
         }
