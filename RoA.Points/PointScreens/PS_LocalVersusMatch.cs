@@ -11,6 +11,9 @@ namespace RoA.Points.PointScreens
             double purpleBanner = ScreenTools.GetMatchingPercentage(screen, PC_PurpleBanner.Group);
             if (purpleBanner > 80) return false;
 
+            double overtime = ScreenTools.GetMatchingPercentage(screen, PC_Overtime.Group);
+            if (overtime >= 100) return true;
+
             double staticTimerDouble = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerDoubleDigits.Group);
             double staticTimerSingle = ScreenTools.GetMatchingPercentage(screen, PC_MatchTimerSingleDigits.Group);
 

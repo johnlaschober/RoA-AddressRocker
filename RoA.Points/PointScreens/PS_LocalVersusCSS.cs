@@ -51,8 +51,10 @@ namespace RoA.Points.PointScreens
             double tourneyModeText = ScreenTools.GetMatchingPercentage(screen, PC_TourneyModeText.Group);
             if (versusModeText < 30 && tourneyModeText < 30) return false;
 
-            double musicButton = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectMusicButton.Group);
+            double changeRules = ScreenTools.GetMatchingPercentage(screen, PC_ChangeRules.Group);
+            if (changeRules > 90) return true;
 
+            double musicButton = ScreenTools.GetMatchingPercentage(screen, PC_StageSelectMusicButton.Group);
             return musicButton < 50;
         }
 

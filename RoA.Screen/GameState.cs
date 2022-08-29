@@ -35,7 +35,7 @@ namespace RoA.Screen
             }
         }
 
-        public void Sync(Bitmap screen, SetState setState = null)
+        public void Sync(Bitmap screen, ref SetState setState)
         {
             if (updateHuds)
             {
@@ -47,41 +47,95 @@ namespace RoA.Screen
                     dctPlayerHuds[player].UpdateInfo(screen, dblGAME, dblSet);
                 }
 
-                int playersWithNoStocks = 0;
-                int winnerPlayerNum = -1;
-                foreach (var player in players)
+                if (ScreenTools.GetMatchingPercentage(screen, PC_TIME.Group) >= 100)
                 {
-                    if (dctPlayerHuds[player].GetStockCount() <= 0)
-                    {
-                        playersWithNoStocks++;
-                    }
-                    else
-                    {
-                        winnerPlayerNum = player.playerNum;
-                    }
-                }
-                if (playersWithNoStocks >= players.Count - 1)
-                {
-                    updateHuds = false;
+                    // TIMEout
+                    int winnerPlayerNum = -1;
 
-                    if (setState != null)
+                    // Need to get all players with max tied stock counts
+                    int maxStock = -1;
+                    foreach (var player in players)
                     {
-                        switch (winnerPlayerNum)
+                        if (dctPlayerHuds[player].GetStockCount() > maxStock) maxStock = dctPlayerHuds[player].GetStockCount();
+                    }
+
+                    List<PlayerState> tiedPlayers = new List<PlayerState>();
+                    foreach (var player in players)
+                    {
+                        if (dctPlayerHuds[player].GetStockCount() == maxStock)
                         {
-                            case 1:
-                                setState.P1GameCount++;
-                                break;
-                            case 2:
-                                setState.P2GameCount++;
-                                break;
-                            case 3:
-                                setState.P3GameCount++;
-                                break;
-                            case 4:
-                                setState.P4GameCount++;
-                                break;
+                            tiedPlayers.Add(player);
                         }
                     }
+
+                    // Need to pick the player with the least percent as the winner
+                    int leastPercentage = 1000;
+                    int leastPlayerNum = -1;
+                    foreach (var player in tiedPlayers)
+                    {
+                        var damage = dctPlayerHuds[player].GetDamage(screen);
+                        int damageInt;
+                        if (int.TryParse(damage, out damageInt))
+                        {
+                            if (damageInt < leastPercentage)
+                            {
+                                leastPercentage = damageInt;
+                                leastPlayerNum = player.playerNum;
+                            }
+                        }
+                    }
+
+                    if (leastPlayerNum != -1)
+                    {
+                        winnerPlayerNum = leastPlayerNum;
+                    }
+
+                    updateHuds = false;
+                    UpdateGameCount(winnerPlayerNum, ref setState);
+                }
+                else
+                {
+                    int playersWithNoStocks = 0;
+                    int winnerPlayerNum = -1;
+                    foreach (var player in players)
+                    {
+                        if (dctPlayerHuds[player].GetStockCount() <= 0)
+                        {
+                            playersWithNoStocks++;
+                        }
+                        else
+                        {
+                            winnerPlayerNum = player.playerNum;
+                        }
+                    }
+
+                    if (playersWithNoStocks >= players.Count - 1)
+                    {
+                        updateHuds = false;
+                        UpdateGameCount(winnerPlayerNum, ref setState);
+                    }
+                }
+            }
+        }
+
+        private void UpdateGameCount(int winnerPlayerNum, ref SetState setState)
+        {
+            if (setState != null)
+            {
+                switch (winnerPlayerNum)
+                {
+                    case 1:
+                        setState.P1GameCount++;
+                        break;
+                    case 2:
+                        setState.P2GameCount++;
+                        break;
+                    case 3:
+                        setState.P3GameCount++;
+                        break;
+                    case 4:
+                        setState.P4GameCount++;
+                        break;
                 }
             }
         }

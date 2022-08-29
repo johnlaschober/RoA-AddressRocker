@@ -44,16 +44,22 @@
   <ItemGroup>
     <Compile Include="PointCollection.cs" />
     <Compile Include="PointCollectionsGroup.cs" />
+    <Compile Include="PointCollections\PC_ChangeRules.cs" />
     <Compile Include="PointCollections\PC_CSSCharacterNames.cs" />
     <Compile Include="PointCollections\PC_EliminatedZero.cs" />
     <Compile Include="PointCollections\PC_FallbackTokens.cs" />
     <Compile Include="PointCollections\PC_GAME.cs" />
     <Compile Include="PointCollections\PC_GameAndSet.cs" />
+    <Compile Include="PointCollections\PC_LocalMenu.cs" />
+    <Compile Include="PointCollections\PC_MatchDamage.cs" />
     <Compile Include="PointCollections\PC_MatchTimerDoubleDigits.cs" />
     <Compile Include="PointCollections\PC_MatchTimerSingleDigits.cs" />
+    <Compile Include="PointCollections\PC_Overtime.cs" />
+    <Compile Include="PointCollections\PC_PercentPercentageSign.cs" />
     <Compile Include="PointCollections\PC_ReadyToFightBar.cs" />
     <Compile Include="PointCollections\PC_StageSelectMusicButton.cs" />
     <Compile Include="PointCollections\PC_StocksIcon.cs" />
+    <Compile Include="PointCollections\PC_TIME.cs" />
     <Compile Include="PointCollections\PC_TourneyModeIcon.cs" />
     <Compile Include="PointCollections\SettingsNumbers\PC_Settings0.cs" />
     <Compile Include="PointCollections\SettingsNumbers\PC_Settings1.cs" />
@@ -100,6 +106,7 @@
     <Compile Include="PointObjects\PO_MatchPlayerHud.cs" />
     <Compile Include="PointObjects\PO_SettingsNumber.cs" />
     <Compile Include="PointScreens\IPS.cs" />
+    <Compile Include="PointScreens\PS_LocalMenu.cs" />
     <Compile Include="PointScreens\PS_LocalVersusCSS.cs" />
     <Compile Include="PointScreens\PS_LocalVersusMatch.cs" />
     <Compile Include="PointScreens\PS_LocalVersusSettings.cs" />

@@ -34,15 +34,24 @@ namespace RoA.Screen
             ScreenState newState;
             newState = prevState == null ? new ScreenState() : prevState.GetCopy();
 
-            if (screens.localCSS.IsActive(screen))
+            if (screens.localMenu.IsActive(screen))
             {
-                if (screens.localCSS.isTournamentMode == null || newState.Stock == "" || prevState.ScreenName == "LOCAL SETTINGS")
+                newState.ScreenName = "LOCAL CSS";
+                newState.TourneySet.InMatch = "false";
+
+                newState.TourneySet.P1GameCount = "0";
+                newState.TourneySet.P2GameCount = "0";
+                newState.TourneySet.P3GameCount = "0";
+                newState.TourneySet.P4GameCount = "0";
+            }
+            else if (screens.localCSS.IsActive(screen))
+            {
+                if (screens.localCSS.isTournamentMode == null || newState.TourneySet.Stocks == "" || prevState.ScreenName == "LOCAL SETTINGS")
                 {
                     screens.localCSS.UpdateSettings(screen);
-                    newState.IsTournamentMode = screens.localCSS.isTournamentMode.ToString();
-                    newState.TourneyBestOf = screens.localCSS.GetTourneyModeBestOf(screen);
-                    newState.Stock = screens.localCSS.GetStockCount(screen);
-                    newState.Time = screens.localCSS.GetTime(screen, newState.Stock);
+                    newState.TourneySet.TourneyModeBestOf = screens.localCSS.GetTourneyModeBestOf(screen);
+                    newState.TourneySet.Stocks = screens.localCSS.GetStockCount(screen);
+                    newState.TourneySet.Time = screens.localCSS.GetTime(screen, newState.TourneySet.Stocks);
 
                     if (screens.localCSS.isTournamentMode != null &&
                         (bool)screens.localCSS.isTournamentMode == true && 
@@ -60,7 +69,7 @@ namespace RoA.Screen
                 bool resetSet = false;
                 if (setState != null)
                 {
-                    switch (newState.TourneyBestOf)
+                    switch (newState.TourneySet.TourneyModeBestOf)
                     {
                         case "1":
                             if (setState.GetMaxWin() >= 1)
@@ -102,52 +111,52 @@ namespace RoA.Screen
 
                 if (resetSet)
                 {
-                    newState.P1GameCount = "0";
-                    newState.P2GameCount = "0";
-                    newState.P3GameCount = "0";
-                    newState.P4GameCount = "0";
+                    newState.TourneySet.P1GameCount = "0";
+                    newState.TourneySet.P2GameCount = "0";
+                    newState.TourneySet.P3GameCount = "0";
+                    newState.TourneySet.P4GameCount = "0";
                 }
 
                 newState.ScreenName = "LOCAL CSS";
-                newState.InMatch = false;
+                newState.TourneySet.InMatch = "false";
 
                 if (screens.localCSS.ShouldUpdateCharacters(screen))
                 {
-                    newState.P1SlotType = screens.localCSS.slot_p1.GetSlotType(screen);
-                    newState.P2SlotType = screens.localCSS.slot_p2.GetSlotType(screen);
-                    newState.P3SlotType = screens.localCSS.slot_p3.GetSlotType(screen);
-                    newState.P4SlotType = screens.localCSS.slot_p4.GetSlotType(screen);
+                    newState.P1Character.SlotState = screens.localCSS.slot_p1.GetSlotType(screen);
+                    newState.P2Character.SlotState = screens.localCSS.slot_p2.GetSlotType(screen);
+                    newState.P3Character.SlotState = screens.localCSS.slot_p3.GetSlotType(screen);
+                    newState.P4Character.SlotState = screens.localCSS.slot_p4.GetSlotType(screen);
 
-                    if (newState.P1SlotType == "OFF") {
-                        newState.P1Character = "";
+                    if (newState.P1Character.SlotState == "OFF") {
+                        newState.P1Character.Character = "";
                     }
                     else {
                         string p1Character = screens.localCSS.slot_p1.GetSlotCharacter(screen);
-                        if (p1Character != "UNKNOWN") newState.P1Character = p1Character;
+                        if (p1Character != "UNKNOWN") newState.P1Character.Character = p1Character;
                     }
 
-                    if (newState.P2SlotType == "OFF"){
-                        newState.P2Character = "";
+                    if (newState.P2Character.SlotState == "OFF"){
+                        newState.P2Character.Character = "";
                     }
                     else{
                         string p2Character = screens.localCSS.slot_p2.GetSlotCharacter(screen);
-                        if (p2Character != "UNKNOWN") newState.P2Character = p2Character;
+                        if (p2Character != "UNKNOWN") newState.P2Character.Character = p2Character;
                     }
 
-                    if (newState.P3SlotType == "OFF"){
-                        newState.P3Character = "";
+                    if (newState.P3Character.SlotState == "OFF"){
+                        newState.P3Character.Character = "";
                     }
                     else{
                         string p3Character = screens.localCSS.slot_p3.GetSlotCharacter(screen);
-                        if (p3Character != "UNKNOWN") newState.P3Character = p3Character;
+                        if (p3Character != "UNKNOWN") newState.P3Character.Character = p3Character;
                     }
 
-                    if (newState.P4SlotType == "OFF"){
-                        newState.P4Character = "";
+                    if (newState.P4Character.SlotState == "OFF"){
+                        newState.P4Character.Character = "";
                     }
                     else{
                         string p4Character = screens.localCSS.slot_p4.GetSlotCharacter(screen);
-                        if (p4Character != "UNKNOWN") newState.P4Character = p4Character;
+                        if (p4Character != "UNKNOWN") newState.P4Character.Character = p4Character;
                     }
                 }
             }
@@ -155,27 +164,27 @@ namespace RoA.Screen
             {
                 newState.ScreenName = "LOCAL SETTINGS";
 
-                newState.TourneyBestOf = screens.localSettings.tourneyBestOfNumber.GetNumber(screen);
-                newState.Stock = screens.localSettings.stockNumber.GetNumber(screen);
-                newState.Time = screens.localSettings.timeNumber.GetNumber(screen);
+                newState.TourneySet.TourneyModeBestOf = screens.localSettings.tourneyBestOfNumber.GetNumber(screen);
+                newState.TourneySet.Stocks = screens.localSettings.stockNumber.GetNumber(screen);
+                newState.TourneySet.Time = screens.localSettings.timeNumber.GetNumber(screen);
                 
-                newState.InMatch = false;
+                newState.TourneySet.InMatch = "false";
 
-                int.TryParse(newState.Stock, out stockSetting);
+                int.TryParse(newState.TourneySet.Stocks, out stockSetting);
             }
             else if (screens.stageSelect.IsActive(screen))
             {
                 newState.ScreenName = "STAGE SELECT";
-                newState.InMatch = false;
+                newState.TourneySet.InMatch = "false";
             }
             else if (screens.localMatch.IsActive(screen))
             {
                 if (prevState.ScreenName == "LOCAL CSS" || prevState.ScreenName == "STAGE SELECT")
                 {
-                    p1MatchState = new PlayerState(1, newState.P1Character, newState.P1SlotType);
-                    p2MatchState = new PlayerState(2, newState.P2Character, newState.P2SlotType);
-                    p3MatchState = new PlayerState(3, newState.P3Character, newState.P3SlotType);
-                    p4MatchState = new PlayerState(4, newState.P4Character, newState.P4SlotType);
+                    p1MatchState = new PlayerState(1, newState.P1Character.Character, newState.P1Character.SlotState);
+                    p2MatchState = new PlayerState(2, newState.P2Character.Character, newState.P2Character.SlotState);
+                    p3MatchState = new PlayerState(3, newState.P3Character.Character, newState.P3Character.SlotState);
+                    p4MatchState = new PlayerState(4, newState.P4Character.Character, newState.P4Character.SlotState);
 
                     List<PlayerState> gamePlayers = new List<PlayerState>();
 
@@ -184,38 +193,59 @@ namespace RoA.Screen
                     if (p3MatchState.slotType != "OFF" && p3MatchState.slotType != "") gamePlayers.Add(p3MatchState);
                     if (p4MatchState.slotType != "OFF" && p4MatchState.slotType != "") gamePlayers.Add(p4MatchState);
 
-                    newState.P1Stock = "";
-                    newState.P2Stock = "";
-                    newState.P3Stock = "";
-                    newState.P4Stock = "";
+                    newState.P1Character.Stocks = "";
+                    newState.P2Character.Stocks = "";
+                    newState.P3Character.Stocks = "";
+                    newState.P4Character.Stocks = "";
 
                     gameState = new GameState(stockSetting, gamePlayers);
                 }
 
                 newState.ScreenName = "LOCAL MATCH";
-                newState.InMatch = true;
+                newState.TourneySet.InMatch = "true";
 
                 if (gameState != null)
                 {
-                    gameState.Sync(screen, setState);
-                    if (gameState.dctPlayerHuds.ContainsKey(p1MatchState)) newState.P1Stock = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
-                    if (gameState.dctPlayerHuds.ContainsKey(p2MatchState)) newState.P2Stock = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
-                    if (gameState.dctPlayerHuds.ContainsKey(p3MatchState)) newState.P3Stock = gameState.dctPlayerHuds[p3MatchState].GetStockCount().ToString();
-                    if (gameState.dctPlayerHuds.ContainsKey(p4MatchState)) newState.P4Stock = gameState.dctPlayerHuds[p4MatchState].GetStockCount().ToString();
+                    gameState.Sync(screen, ref setState);
+                    if (gameState.dctPlayerHuds.ContainsKey(p1MatchState)) newState.P1Character.Stocks = gameState.dctPlayerHuds[p1MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p2MatchState)) newState.P2Character.Stocks = gameState.dctPlayerHuds[p2MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p3MatchState)) newState.P3Character.Stocks = gameState.dctPlayerHuds[p3MatchState].GetStockCount().ToString();
+                    if (gameState.dctPlayerHuds.ContainsKey(p4MatchState)) newState.P4Character.Stocks = gameState.dctPlayerHuds[p4MatchState].GetStockCount().ToString();
+
+                    if (gameState.dctPlayerHuds.ContainsKey(p1MatchState))
+                    {
+                        var damage = gameState.dctPlayerHuds[p1MatchState].GetDamage(screen).ToString();
+                        if (!string.IsNullOrEmpty(damage)) newState.P1Character.Damage = damage.ToString();
+                    }
+                    if (gameState.dctPlayerHuds.ContainsKey(p2MatchState))
+                    {
+                        var damage = gameState.dctPlayerHuds[p2MatchState].GetDamage(screen).ToString();
+                        if (!string.IsNullOrEmpty(damage)) newState.P2Character.Damage = damage.ToString();
+                    }
+                    if (gameState.dctPlayerHuds.ContainsKey(p3MatchState))
+                    {
+                        var damage = gameState.dctPlayerHuds[p3MatchState].GetDamage(screen).ToString();
+                        if (!string.IsNullOrEmpty(damage)) newState.P3Character.Damage = damage.ToString();
+                    }
+                    if (gameState.dctPlayerHuds.ContainsKey(p4MatchState))
+                    {
+                        var damage = gameState.dctPlayerHuds[p4MatchState].GetDamage(screen).ToString();
+                        if (!string.IsNullOrEmpty(damage)) newState.P4Character.Damage = damage.ToString();
+                    }
 
                     if (setState != null)
                     {
-                        newState.P1GameCount = setState.P1GameCount.ToString();
-                        newState.P2GameCount = setState.P2GameCount.ToString();
-                        newState.P3GameCount = setState.P3GameCount.ToString();
-                        newState.P4GameCount = setState.P4GameCount.ToString();
+                        newState.TourneySet.P1GameCount = setState.P1GameCount.ToString();
+                        newState.TourneySet.P2GameCount = setState.P2GameCount.ToString();
+                        newState.TourneySet.P3GameCount = setState.P3GameCount.ToString();
+                        newState.TourneySet.P4GameCount = setState.P4GameCount.ToString();
                     }
                     else
                     {
-                        newState.P1GameCount = "";
-                        newState.P2GameCount = "";
-                        newState.P3GameCount = "";
-                        newState.P4GameCount = "";
+                        newState.TourneySet.P1GameCount = "0";
+                        newState.TourneySet.P2GameCount = "0";
+                        newState.TourneySet.P3GameCount = "0";
+                        newState.TourneySet.P4GameCount = "0";
                     }
                 }
                 else if (gameState == null)
@@ -226,7 +256,7 @@ namespace RoA.Screen
             else if (screens.pause.IsActive(screen))
             {
                 newState.ScreenName = "PAUSE";
-                newState.InMatch = true;
+                newState.TourneySet.InMatch = "true";
             }
 
             var returnTuple = (ChangesOccurred(prevState, newState), newState);
@@ -251,6 +281,7 @@ namespace RoA.Screen
         public PS_LocalVersusMatch localMatch;
         public PS_Pause pause;
         public PS_LocalVersusSettings localSettings;
+        public PS_LocalMenu localMenu;
 
         public Screens()
         {
@@ -259,6 +290,7 @@ namespace RoA.Screen
             localMatch = new PS_LocalVersusMatch();
             pause = new PS_Pause();
             localSettings = new PS_LocalVersusSettings();
+            localMenu = new PS_LocalMenu();
         }
     }
 }

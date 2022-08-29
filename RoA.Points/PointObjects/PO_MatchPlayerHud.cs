@@ -13,6 +13,8 @@ namespace RoA.Points.PointObjects
         private int playerNumber = -1;
         private bool isCPU = false;
 
+        private Point hudStartPoint;
+
         private double hudPercent = 100;
 
         private bool wasShaking = false;
@@ -55,6 +57,10 @@ namespace RoA.Points.PointObjects
 
         private PointCollectionsGroup eliminatedZero;
 
+        private PointCollectionsGroup percentSingle;
+        private PointCollectionsGroup percentDouble;
+        private PointCollectionsGroup percentTriple;
+
         private int slotPosition;
         private int totalSlots;
 
@@ -66,7 +72,65 @@ namespace RoA.Points.PointObjects
             this.slotPosition = slotPosition;
             this.totalSlots = totalSlots;
 
+            SetupHudStartPoint(slotPosition, totalSlots);
             SetupStockNumbers(slotPosition, totalSlots);
+
+            percentSingle = PointHelper.GetGroupClone(PC_PercentPercentageSign.SingleDigits);
+            percentDouble = PointHelper.GetGroupClone(PC_PercentPercentageSign.DoubleDigits);
+            percentTriple = PointHelper.GetGroupClone(PC_PercentPercentageSign.TripleDigits);
+
+            PointHelper.SlideGroup(hudStartPoint, ref percentSingle);
+            PointHelper.SlideGroup(hudStartPoint, ref percentDouble);
+            PointHelper.SlideGroup(hudStartPoint, ref percentTriple);
+        }
+
+        private void SetupHudStartPoint(int slotPosition, int totalSlots)
+        {
+            if (totalSlots == 2)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        hudStartPoint = new Point(500, 984);
+                        break;
+                    case 2:
+                        hudStartPoint = new Point(976, 984);
+                        break;
+                }
+            }
+            if (totalSlots == 3)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        hudStartPoint = new Point(262, 984);
+                        break;
+                    case 2:
+                        hudStartPoint = new Point(738, 984);
+                        break;
+                    case 3:
+                        hudStartPoint = new Point(1214, 984);
+                        break;
+                }
+            }
+            if (totalSlots == 4)
+            {
+                switch (slotPosition)
+                {
+                    case 1:
+                        hudStartPoint = new Point(24, 984);
+                        break;
+                    case 2:
+                        hudStartPoint = new Point(500, 984);
+                        break;
+                    case 3:
+                        hudStartPoint = new Point(976, 984);
+                        break;
+                    case 4:
+                        hudStartPoint = new Point(1452, 984);
+                        break;
+                }
+            }
         }
 
         private void SetupStockNumbers(int slotPosition, int totalSlots)
@@ -351,6 +415,83 @@ namespace RoA.Points.PointObjects
             if (stockCount == null) return -1;
 
             return (int)stockCount;
+        }
+
+        public int NumDigitsInPercent(Bitmap screen)
+        {
+            if (ScreenTools.GetMatchingPercentage(screen, percentDouble) >= 70) return 2;
+            if (ScreenTools.GetMatchingPercentage(screen, percentTriple) >= 70) return 3;
+            if (ScreenTools.GetMatchingPercentage(screen, percentSingle) >= 70) return 1;
+            return 0;
+        }
+
+        public string GetDamage(Bitmap screen)
+        {
+            switch (NumDigitsInPercent(screen))
+            {
+                case 0:
+                    return string.Empty;
+                case 1:
+                    return DamageNumber(new Point(hudStartPoint.X + 234, hudStartPoint.Y + 16), screen);
+                case 2:
+                    string returnString2 = "";
+                    returnString2 += DamageNumber(new Point(hudStartPoint.X + 214, hudStartPoint.Y + 16), screen);
+                    returnString2 += DamageNumber(new Point(hudStartPoint.X + 254, hudStartPoint.Y + 16), screen);
+                    return returnString2;
+                case 3:
+                    string returnString3 = "";
+                    returnString3 += DamageNumber(new Point(hudStartPoint.X + 194, hudStartPoint.Y + 16), screen);
+                    returnString3 += DamageNumber(new Point(hudStartPoint.X + 234, hudStartPoint.Y + 16), screen);
+                    returnString3 += DamageNumber(new Point(hudStartPoint.X + 274, hudStartPoint.Y + 16), screen);
+                    return returnString3;
+            }
+
+            return string.Empty;
+        }
+
+        private string DamageNumber(Point startPoint, Bitmap screen)
+        {
+            var num0 = PointHelper.GetGroupClone(PC_MatchDamage.Num0);
+            var num1 = PointHelper.GetGroupClone(PC_MatchDamage.Num1);
+            var num2 = PointHelper.GetGroupClone(PC_MatchDamage.Num2);
+            var num3 = PointHelper.GetGroupClone(PC_MatchDamage.Num3);
+            var num4 = PointHelper.GetGroupClone(PC_MatchDamage.Num4);
+            var num5 = PointHelper.GetGroupClone(PC_MatchDamage.Num5);
+            var num6 = PointHelper.GetGroupClone(PC_MatchDamage.Num6);
+            var num7 = PointHelper.GetGroupClone(PC_MatchDamage.Num7);
+            var num8 = PointHelper.GetGroupClone(PC_MatchDamage.Num8);
+            var num9 = PointHelper.GetGroupClone(PC_MatchDamage.Num9);
+
+            PointHelper.SlideGroup(startPoint, ref num0);
+            PointHelper.SlideGroup(startPoint, ref num1);
+            PointHelper.SlideGroup(startPoint, ref num2);
+            PointHelper.SlideGroup(startPoint, ref num3);
+            PointHelper.SlideGroup(startPoint, ref num4);
+            PointHelper.SlideGroup(startPoint, ref num5);
+            PointHelper.SlideGroup(startPoint, ref num6);
+            PointHelper.SlideGroup(startPoint, ref num7);
+            PointHelper.SlideGroup(startPoint, ref num8);
+            PointHelper.SlideGroup(startPoint, ref num9);
+
+            Dictionary<string, double> dctNumbers = new Dictionary<string, double>();
+            dctNumbers["0"] = ScreenTools.GetMatchingPercentage(screen, num0);
+            dctNumbers["1"] = ScreenTools.GetMatchingPercentage(screen, num1);
+            dctNumbers["2"] = ScreenTools.GetMatchingPercentage(screen, num2);
+            dctNumbers["3"] = ScreenTools.GetMatchingPercentage(screen, num3);
+            dctNumbers["4"] = ScreenTools.GetMatchingPercentage(screen, num4);
+            dctNumbers["5"] = ScreenTools.GetMatchingPercentage(screen, num5);
+            dctNumbers["6"] = ScreenTools.GetMatchingPercentage(screen, num6);
+            dctNumbers["7"] = ScreenTools.GetMatchingPercentage(screen, num7);
+            dctNumbers["8"] = ScreenTools.GetMatchingPercentage(screen, num8);
+            dctNumbers["9"] = ScreenTools.GetMatchingPercentage(screen, num9);
+
+            var matching = dctNumbers.Where(k => k.Value >= 100).ToList();
+            if (matching.Count > 0)
+            {
+                return matching.Last().Key;
+            }
+
+            return "";
         }
     }
 }

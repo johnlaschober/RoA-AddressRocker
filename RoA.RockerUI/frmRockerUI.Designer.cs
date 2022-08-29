@@ -337,6 +337,7 @@ namespace RoA.RockerUI
             this.txtSaveLocation.Size = new System.Drawing.Size(410, 20);
             this.txtSaveLocation.TabIndex = 6;
             this.txtSaveLocation.TabStop = false;
+            this.txtSaveLocation.TextChanged += new System.EventHandler(this.txtSaveLocation_TextChanged);
             // 
             // btnSaveDirectory
             // 
@@ -358,6 +359,7 @@ namespace RoA.RockerUI
             this.label6.Size = new System.Drawing.Size(147, 13);
             this.label6.TabIndex = 8;
             this.label6.Text = "RoAState.json Save Location";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // chkOverrideMD5
             // 

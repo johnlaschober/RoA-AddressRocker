@@ -286,5 +286,15 @@ namespace RoA.RockerUI
                 MessageBox.Show("Error saving RockerConfig.json file: " + ex.Message.ToString(), "Error");
             }
         }
+
+        private void txtSaveLocation_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,61 +8,67 @@ namespace RoA.Screen
 {
     public class ScreenState
     {
-        // temp shit
         public string ScreenName = "";
-        public string P1Character = "";
-        public string P2Character = "";
-        public string P3Character = "";
-        public string P4Character = "";
+        public RivalsCharacterSelection P1Character { get; set; }
+        public RivalsCharacterSelection P2Character { get; set; }
+        public RivalsCharacterSelection P3Character { get; set; }
+        public RivalsCharacterSelection P4Character { get; set; }
+        public RivalsTourneySet TourneySet { get; set; }
 
-        public string P1SlotType = "";
-        public string P2SlotType = "";
-        public string P3SlotType = "";
-        public string P4SlotType = "";
-
-        public string TourneyBestOf = "";
-        public string Stock = "";
-        public string Time = "";
-        public bool InMatch = false;
-
-        public string P1Stock = "";
-        public string P2Stock = "";
-        public string P3Stock = "";
-        public string P4Stock = "";
-
-        public string P1GameCount = "";
-        public string P2GameCount = "";
-        public string P3GameCount = "";
-        public string P4GameCount = "";
-
-        public string IsTournamentMode = "";
+        public ScreenState()
+        {
+            ScreenName = "";
+            P1Character = new RivalsCharacterSelection();
+            P2Character = new RivalsCharacterSelection();
+            P3Character = new RivalsCharacterSelection();
+            P4Character = new RivalsCharacterSelection();
+            TourneySet = new RivalsTourneySet();
+        }
 
         public ScreenState GetCopy()
         {
             ScreenState copiedState = new ScreenState()
             {
-                ScreenName = this.ScreenName,
-                P1Character = this.P1Character,
-                P1SlotType = this.P1SlotType,
-                P2Character = this.P2Character,
-                P2SlotType = this.P2SlotType,
-                P3Character = this.P3Character,
-                P3SlotType = this.P3SlotType,
-                P4Character = this.P4Character,
-                P4SlotType = this.P4SlotType,
-                TourneyBestOf = this.TourneyBestOf,
-                Stock = this.Stock,
-                Time = this.Time,
-                P1Stock = this.P1Stock,
-                P2Stock = this.P2Stock,
-                P3Stock = this.P3Stock,
-                P4Stock = this.P4Stock,
-                IsTournamentMode = this.IsTournamentMode,
-                InMatch = this.InMatch,
-                P1GameCount = this.P1GameCount,
-                P2GameCount = this.P2GameCount,
-                P3GameCount = this.P3GameCount,
-                P4GameCount = this.P4GameCount
+                P1Character = new RivalsCharacterSelection
+                {
+                    Character = this.P1Character.Character,
+                    Damage = this.P1Character.Damage,
+                    SlotState = this.P1Character.SlotState,
+                    Stocks = this.P1Character.Stocks
+                },
+                P2Character = new RivalsCharacterSelection
+                {
+                    Character = this.P2Character.Character,
+                    Damage = this.P2Character.Damage,
+                    SlotState = this.P2Character.SlotState,
+                    Stocks = this.P2Character.Stocks
+                },
+                P3Character = new RivalsCharacterSelection
+                {
+                    Character = this.P3Character.Character,
+                    Damage = this.P3Character.Damage,
+                    SlotState = this.P3Character.SlotState,
+                    Stocks = this.P3Character.Stocks
+                },
+                P4Character = new RivalsCharacterSelection
+                {
+                    Character = this.P4Character.Character,
+                    Damage = this.P4Character.Damage,
+                    SlotState = this.P4Character.SlotState,
+                    Stocks = this.P4Character.Stocks
+                },
+                TourneySet = new RivalsTourneySet
+                {
+                    InMatch = this.TourneySet.InMatch,
+                    Stocks = this.TourneySet.Stocks,
+                    Time = this.TourneySet.Time,
+                    TourneyModeBestOf = this.TourneySet.TourneyModeBestOf,
+                    P1GameCount = this.TourneySet.P1GameCount,
+                    P2GameCount = this.TourneySet.P2GameCount,
+                    P3GameCount = this.TourneySet.P3GameCount,
+                    P4GameCount = this.TourneySet.P4GameCount
+                },
+                ScreenName = this.ScreenName
             };
 
             return copiedState;
