@@ -44,6 +44,8 @@ namespace RoA.Screen
                 newState.TourneySet.P2GameCount = "0";
                 newState.TourneySet.P3GameCount = "0";
                 newState.TourneySet.P4GameCount = "0";
+
+                setState = new SetState();
             }
             else if (screens.localCSS.IsActive(screen))
             {

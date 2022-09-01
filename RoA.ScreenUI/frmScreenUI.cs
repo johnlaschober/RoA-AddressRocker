@@ -4,16 +4,11 @@ using RoA.Screen;
 using RoA.Screen.State.External;
 using RoA.Screen.State.Internal;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RoA.ScreenUI
@@ -36,8 +31,8 @@ namespace RoA.ScreenUI
             {
                 try
                 {
-                    Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
-                    //Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080), null);
+                    //Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
+                    Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080), null);
                     var stateResultsTuple = syncer.Sync(screen);
 
                     bool changesOccurred = stateResultsTuple.Item1;
