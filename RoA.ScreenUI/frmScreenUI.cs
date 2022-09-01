@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RoA.Points;
 using RoA.Screen;
+using RoA.Screen.State.External;
+using RoA.Screen.State.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,8 +36,8 @@ namespace RoA.ScreenUI
             {
                 try
                 {
-                    //Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
-                    Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080), null);
+                    Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 2560, 1440), new Size(1920, 1080));
+                    //Bitmap screen = ScreenTools.CaptureFromScreen(new Rectangle(0, 0, 1920, 1080), null);
                     var stateResultsTuple = syncer.Sync(screen);
 
                     bool changesOccurred = stateResultsTuple.Item1;
@@ -44,7 +46,7 @@ namespace RoA.ScreenUI
                     if (changesOccurred)
                     {
                         bgwSync.ReportProgress(0, currentState);
-                        WriteStateToFile(currentState);
+                        WriteStateToFile(new ExternalScreenState(currentState));
                     }
 
                     screen.Dispose();
@@ -154,7 +156,7 @@ namespace RoA.ScreenUI
             }
         }
 
-        private void WriteStateToFile(ScreenState state)
+        private void WriteStateToFile(ExternalScreenState state)
         {
             try
             {

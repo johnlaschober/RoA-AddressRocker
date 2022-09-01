@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RoA.Points.PointScreens;
 using RoA.Points.PointObjects;
 using Newtonsoft.Json;
+using RoA.Screen.State.Internal;
 
 namespace RoA.Screen
 {

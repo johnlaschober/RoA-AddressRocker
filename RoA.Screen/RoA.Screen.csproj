@@ -50,9 +50,12 @@
     <Compile Include="GameState.cs" />
     <Compile Include="PlayerState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RivalsCharacterSelection.cs" />
-    <Compile Include="RivalsTourneySet.cs" />
-    <Compile Include="ScreenState.cs" />
+    <Compile Include="State\External\ExternalRivalsCharacterSelection.cs" />
+    <Compile Include="State\External\ExternalRivalsTourneySet.cs" />
+    <Compile Include="State\External\ExternalScreenState.cs" />
+    <Compile Include="State\Internal\RivalsCharacterSelection.cs" />
+    <Compile Include="State\Internal\RivalsTourneySet.cs" />
+    <Compile Include="State\Internal\ScreenState.cs" />
     <Compile Include="ScreenSyncer.cs" />
     <Compile Include="SetState.cs" />
   </ItemGroup>
